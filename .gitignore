@@ -27,7 +27,7 @@
 /turismo-app/!.vscode/launch.json
 /turismo-app/!.vscode/extensions.json
 /turismo-app/.history/*
-/turismo-app/.vscode
+.vscode
 
 # Miscellaneous
 /turismo-app/.angular/cache
