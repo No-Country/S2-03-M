@@ -35,12 +35,18 @@
           <div id="tab1">
             <div class="submit-form">
               <h4>Consultar disponibilidad para dirección:</h4>
-              <form id="form-submit" action="" method="get">
+              <form
+                id="form-submit"
+                action=""
+                method="get"
+                [formGroup]="myForm"
+                (ngSubmit)="onSubmit()"
+              >
                 <div class="row">
                   <div class="col-md-6">
                     <fieldset>
                       <label for="from">Desde:</label>
-                      <select required name="from">
+                      <select formControlName="from" required name="from">
                         <option value="">Selecciona una ubicación...</option>
                         <option value="Cambodia">Cambodia</option>
                         <option value="Hong Kong">Hong Kong</option>
@@ -58,7 +64,7 @@
                   <div class="col-md-6">
                     <fieldset>
                       <label for="to">Hasta:</label>
-                      <select required name="to">
+                      <select formControlName="to" required name="to">
                         <option value="">Selecciona una ubicación...</option>
                         <option value="Cambodia">Cambodia</option>
                         <option value="Hong Kong">Hong Kong</option>
@@ -77,6 +83,7 @@
                     <fieldset>
                       <label for="departure">Fecha de salida:</label>
                       <input
+                        formControlName="departure"
                         name="departure"
                         type="text"
                         class="form-control date"
@@ -91,6 +98,7 @@
                     <fieldset>
                       <label for="return">Fecha de regreso:</label>
                       <input
+                        formControlName="return"
                         name="return"
                         type="text"
                         class="form-control date"
@@ -107,6 +115,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-6">
                           <label for="round">Ida y vuelta</label>
                           <input
+                            formControlName="trip"
                             type="radio"
                             name="trip"
                             id="round"
@@ -116,6 +125,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-6">
                           <label for="oneway">Sólo ida</label>
                           <input
+                            formControlName="trip"
                             type="radio"
                             name="trip"
                             id="oneway"
@@ -127,7 +137,7 @@
                   </div>
                   <div class="col-md-6">
                     <fieldset>
-                      <button type="submit" id="form-submit" class="btn">
+                      <button [disabled]="myForm.invalid" type="submit" id="form-submit" class="btn">
                         Consultar
                       </button>
                     </fieldset>
