@@ -67,7 +67,7 @@
 		<dependency>
 			<groupId>com.amadeus</groupId>
 			<artifactId>amadeus-java</artifactId>
-			<version>3.0.1</version>
+			<version>6.1.0</version>
 		</dependency>
 	</dependencies>
 

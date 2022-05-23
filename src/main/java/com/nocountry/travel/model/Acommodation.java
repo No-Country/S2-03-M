@@ -43,7 +43,7 @@ public class Acommodation extends BaseEntity {
 
     @NotEmpty(message = "{error.blank.field}")
     private String contact;
-    
+
     private ArrayList<String> urlsImages = new ArrayList<>();
 
 }
