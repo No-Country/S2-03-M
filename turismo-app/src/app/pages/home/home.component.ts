@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.myForm.invalid) {
+      return;
+    }
     console.log('On Submit ->', this.myForm.value);
     
   }
