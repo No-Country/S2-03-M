@@ -81,33 +81,43 @@
                   </div>
                   <div class="col-md-6">
                     <fieldset>
-                      <label for="departure">Fecha de salida:</label>
-                      <input
-                        formControlName="departure"
-                        name="departure"
-                        type="text"
-                        class="form-control date"
-                        id="departure"
-                        placeholder="Seleccione fecha..."
-                        autocomplete="off"
-                        required
-                      />
+                      <mat-form-field appearance="fill">
+                        <mat-label for="departure">Fecha de salida:</mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="pickerDeparture"
+                          formControlName="departure"
+                          name="departure"
+                          autocomplete="off"
+                          required
+                        />
+                        <mat-hint>DD/M/AAAA</mat-hint>
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="pickerDeparture"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDeparture></mat-datepicker>
+                      </mat-form-field>
                     </fieldset>
                   </div>
-                  <div class="col-md-6">
-                    <fieldset>
-                      <label for="return">Fecha de regreso:</label>
-                      <input
-                        formControlName="return"
-                        name="return"
-                        type="text"
-                        class="form-control date"
-                        id="return"
-                        placeholder="Seleccione fecha..."
-                        autocomplete="off"
-                        required
-                      />
-                    </fieldset>
+                  <div class="col-md-6" *ngIf="myForm.get('trip')?.value !== 'one-way'">
+                      <mat-form-field appearance="fill">
+                        <mat-label for="return">Fecha de regreso:</mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="pickerReturn"
+                          formControlName="return"
+                          name="return"
+                          autocomplete="off"
+                          required
+                        />
+                        <mat-hint>DD/M/AAAA</mat-hint>
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="pickerReturn"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #pickerReturn></mat-datepicker>
+                      </mat-form-field>
                   </div>
                   <div class="col-md-6">
                     <div class="radio-select">
@@ -137,7 +147,12 @@
                   </div>
                   <div class="col-md-6">
                     <fieldset>
-                      <button [disabled]="myForm.invalid" type="submit" id="form-submit" class="btn">
+                      <button
+                        [disabled]="myForm.invalid"
+                        type="submit"
+                        id="form-submit"
+                        class="btn"
+                      >
                         Consultar
                       </button>
                     </fieldset>
