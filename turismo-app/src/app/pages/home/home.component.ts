@@ -19,9 +19,9 @@ export class HomeComponent implements OnInit {
     return this.formBuilder.group({
       from: ['', [Validators.required]],
       to: ['', [Validators.required]],
-      departure: ['', Validators.required],
-      return: ['', Validators.required],
-      trip: ['', Validators.required]
+      departure: ['', [Validators.required]],
+      return: ['', [Validators.required]],
+      trip: ['', [Validators.required]]
     });
   }
 
