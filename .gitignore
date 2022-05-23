@@ -1,0 +1,76 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/resources/application.properties
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Compiled output
+/turismo-app/dist
+/turismo-app/tmp
+/turismo-app/out-tsc
+/turismo-app/bazel-out
+
+# Node
+/turismo-app/node_modules
+/turismo-app/npm-debug.log
+/turismo-app/yarn-error.log
+
+# IDEs and editors
+/turismo-app/.idea/
+/turismo-app/.project
+/turismo-app/.classpath
+/turismo-app/.c9/
+/turismo-app/*.launch
+/turismo-app/.settings/
+/turismo-app/*.sublime-workspace
+
+# Visual Studio Code
+/turismo-app/.vscode/*
+/turismo-app/!.vscode/settings.json
+/turismo-app/!.vscode/tasks.json
+/turismo-app/!.vscode/launch.json
+/turismo-app/!.vscode/extensions.json
+/turismo-app/.history/*
+/turismo-app/.vscode
+
+# Miscellaneous
+/turismo-app/.angular/cache
+/turismo-app/.sass-cache/
+/turismo-app/connect.lock
+/turismo-app/coverage
+/turismo-app/libpeerconnection.log
+/turismo-app/testem.log
+/turismo-app/typings
+
+# System files
+/turismo-app/.DS_Store
+/turismo-app/Thumbs.db
