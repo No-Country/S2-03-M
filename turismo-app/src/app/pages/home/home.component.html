@@ -45,38 +45,36 @@
                 <div class="row">
                   <div class="col-md-6">
                     <fieldset>
-                      <label for="from">Desde:</label>
-                      <select formControlName="from" required name="from">
-                        <option value="">Selecciona una ubicación...</option>
-                        <option value="Cambodia">Cambodia</option>
-                        <option value="Hong Kong">Hong Kong</option>
-                        <option value="India">India</option>
-                        <option value="Japan">Japan</option>
-                        <option value="Korea">Korea</option>
-                        <option value="Laos">Laos</option>
-                        <option value="Myanmar">Myanmar</option>
-                        <option value="Singapore">Singapore</option>
-                        <option value="Thailand">Thailand</option>
-                        <option value="Vietnam">Vietnam</option>
-                      </select>
+                      <mat-form-field>
+                        <mat-label>Desde:</mat-label>
+                        <input
+                          formControlName="from"
+                          required
+                          name="from"
+                          matInput
+                          minlength="3"
+                          placeholder="Ingrese una ubicación..."
+                          autocomplete="off"
+                        />
+                        <mat-hint align="start">Por ejemplo: London</mat-hint>
+                      </mat-form-field>
                     </fieldset>
                   </div>
                   <div class="col-md-6">
                     <fieldset>
-                      <label for="to">Hasta:</label>
-                      <select formControlName="to" required name="to">
-                        <option value="">Selecciona una ubicación...</option>
-                        <option value="Cambodia">Cambodia</option>
-                        <option value="Hong Kong">Hong Kong</option>
-                        <option value="India">India</option>
-                        <option value="Japan">Japan</option>
-                        <option value="Korea">Korea</option>
-                        <option value="Laos">Laos</option>
-                        <option value="Myanmar">Myanmar</option>
-                        <option value="Singapore">Singapore</option>
-                        <option value="Thailand">Thailand</option>
-                        <option value="Vietnam">Vietnam</option>
-                      </select>
+                      <mat-form-field>
+                        <mat-label>Hasta:</mat-label>
+                        <input
+                          formControlName="to"
+                          required
+                          name="to"
+                          matInput
+                          minlength="3"
+                          placeholder="Ingrese una ubicación..."
+                          autocomplete="off"
+                        />
+                        <mat-hint align="start">Por ejemplo: Germany</mat-hint>
+                      </mat-form-field>
                     </fieldset>
                   </div>
                   <div class="col-md-6">
@@ -91,7 +89,7 @@
                           autocomplete="off"
                           required
                         />
-                        <mat-hint>DD/M/AAAA</mat-hint>
+                        <mat-hint>DD/MM/AAAA</mat-hint>
                         <mat-datepicker-toggle
                           matSuffix
                           [for]="pickerDeparture"
@@ -104,7 +102,6 @@
                     <fieldset>
                       <mat-form-field
                         appearance="fill"
-                        *ngIf="myForm.get('trip')?.value !== 'one-way'"
                       >
                         <mat-label for="return">Fecha de regreso:</mat-label>
                         <input
@@ -113,9 +110,8 @@
                           formControlName="return"
                           name="return"
                           autocomplete="off"
-                          required
                         />
-                        <mat-hint>DD/M/AAAA</mat-hint>
+                        <mat-hint>DD/MM/AAAA</mat-hint>
                         <mat-datepicker-toggle
                           matSuffix
                           [for]="pickerReturn"
@@ -128,24 +124,23 @@
                     <div class="radio-select">
                       <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                          <label for="round">Ida y vuelta</label>
-                          <input
+                          <mat-radio-group
+                            aria-label="Seleccione tipo de viaje"
                             formControlName="trip"
-                            type="radio"
-                            name="trip"
-                            id="round"
-                            value="round"
-                          />
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                          <label for="oneway">Sólo ida</label>
-                          <input
-                            formControlName="trip"
-                            type="radio"
-                            name="trip"
-                            id="oneway"
-                            value="one-way"
-                          />
+                          >
+                            <mat-radio-button
+                              name="trip"
+                              id="round"
+                              value="round"
+                              >Ida y Vuelta</mat-radio-button
+                            >
+                            <mat-radio-button
+                              name="trip"
+                              id="oneway"
+                              value="one-way"
+                              >Sólo Ida</mat-radio-button
+                            >
+                          </mat-radio-group>
                         </div>
                       </div>
                     </div>
@@ -157,6 +152,7 @@
                         type="submit"
                         id="form-submit"
                         class="btn"
+                        mat-raised-button color="accent"
                       >
                         Consultar
                       </button>
