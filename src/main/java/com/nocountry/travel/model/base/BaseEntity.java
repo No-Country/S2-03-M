@@ -1,4 +1,4 @@
-package com.nocountry.travel.model;
+package com.nocountry.travel.model.base;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
