@@ -116,14 +116,12 @@
                           name="return"
                           placeholder="Seleccione una fecha..."
                           autocomplete="off"
-                          required
                         />
                         <mat-datepicker-toggle
                           matSuffix
                           [for]="pickerReturn"
                         ></mat-datepicker-toggle>
                         <mat-datepicker #pickerReturn></mat-datepicker>
-                        <mat-error *ngIf="(myForm.get('return')?.touched || myForm.get('return')?.dirty) && myForm.get('return')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
                       </mat-form-field>
                     </fieldset>
                   </div>
@@ -139,12 +137,14 @@
                               name="trip"
                               id="round"
                               value="round"
+                              (click)="onClickRound()"
                               >Ida y Vuelta</mat-radio-button
                             >
                             <mat-radio-button
                               name="trip"
                               id="oneway"
                               value="one-way"
+                              (click)="onClickOneway()"
                               >Sólo Ida</mat-radio-button
                             >
                           </mat-radio-group>
