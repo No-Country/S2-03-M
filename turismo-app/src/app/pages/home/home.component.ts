@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   myForm!: FormGroup;
+  radioBtnError: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit {
 
   onSubmit(): void {
     if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+      this.radioBtnError = true;
       return;
     }
     console.log('On Submit ->', this.myForm.value);

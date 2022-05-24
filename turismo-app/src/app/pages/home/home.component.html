@@ -147,6 +147,7 @@
                               >Sólo Ida</mat-radio-button
                             >
                           </mat-radio-group>
+                          <div class="invalid-feedback" *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']">Seleccione una opción</div>
                         </div>
                       </div>
                     </div>
