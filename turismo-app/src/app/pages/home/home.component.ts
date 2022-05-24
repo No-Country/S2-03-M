@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
 
   initForm(): FormGroup {
     return this.formBuilder.group({
-      from: ['', [Validators.required]],
-      to: ['', [Validators.required]],
+      from: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      to: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       departure: ['', [Validators.required]],
       return: ['', [Validators.required]],
       trip: ['', [Validators.required]]

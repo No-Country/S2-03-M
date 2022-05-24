@@ -56,7 +56,9 @@
                           placeholder="Ingrese una ubicación..."
                           autocomplete="off"
                         />
-                        <mat-hint align="start">Por ejemplo: London</mat-hint>
+                        <mat-error *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
+                        <mat-error *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['minlength']">Mínimo <strong>3 caracteres</strong></mat-error>
+                        <mat-error *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['maxlength']">Máximo <strong>15 caracteres</strong></mat-error>
                       </mat-form-field>
                     </fieldset>
                   </div>
@@ -69,11 +71,12 @@
                           required
                           name="to"
                           matInput
-                          minlength="3"
                           placeholder="Ingrese una ubicación..."
                           autocomplete="off"
                         />
-                        <mat-hint align="start">Por ejemplo: Germany</mat-hint>
+                        <mat-error *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
+                        <mat-error *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['minlength']">Mínimo <strong>3 caracteres</strong></mat-error>
+                        <mat-error *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['maxlength']">Máximo <strong>15 caracteres</strong></mat-error>
                       </mat-form-field>
                     </fieldset>
                   </div>
@@ -86,15 +89,16 @@
                           [matDatepicker]="pickerDeparture"
                           formControlName="departure"
                           name="departure"
+                          placeholder="Seleccione una fecha..."
                           autocomplete="off"
                           required
                         />
-                        <mat-hint>DD/MM/AAAA</mat-hint>
                         <mat-datepicker-toggle
                           matSuffix
                           [for]="pickerDeparture"
                         ></mat-datepicker-toggle>
                         <mat-datepicker #pickerDeparture></mat-datepicker>
+                        <mat-error *ngIf="(myForm.get('departure')?.touched || myForm.get('departure')?.dirty) && myForm.get('departure')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
                       </mat-form-field>
                     </fieldset>
                   </div>
@@ -109,14 +113,16 @@
                           [matDatepicker]="pickerReturn"
                           formControlName="return"
                           name="return"
+                          placeholder="Seleccione una fecha..."
                           autocomplete="off"
+                          required
                         />
-                        <mat-hint>DD/MM/AAAA</mat-hint>
                         <mat-datepicker-toggle
                           matSuffix
                           [for]="pickerReturn"
                         ></mat-datepicker-toggle>
                         <mat-datepicker #pickerReturn></mat-datepicker>
+                        <mat-error *ngIf="(myForm.get('return')?.touched || myForm.get('return')?.dirty) && myForm.get('return')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
                       </mat-form-field>
                     </fieldset>
                   </div>
