@@ -106,6 +106,7 @@
                     <fieldset>
                       <mat-form-field
                         appearance="fill"
+                        *ngIf="round$ | async"
                       >
                         <mat-label for="return">Fecha de regreso:</mat-label>
                         <input
