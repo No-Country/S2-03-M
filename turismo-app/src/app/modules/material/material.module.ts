@@ -7,6 +7,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [],
@@ -17,7 +18,8 @@ import { MatButtonModule } from "@angular/material/button";
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: "es-AR" }],
 })
