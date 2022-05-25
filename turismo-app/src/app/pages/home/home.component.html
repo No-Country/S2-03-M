@@ -1,170 +1,165 @@
-<section class="banner" id="top">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5">
-        <div class="left-side">
-          <div class="logo">
-            <img src="assets/img/logo.png" alt="Flight Template" />
-          </div>
-          <div class="tabs-content">
-            <ul class="social-links">
-              <li>
-                <a href="#"
-                  >Ingresar con Google<i class="fa fa-google"></i></a>
-              </li>
-              <li>
-                <a href="#"
-                >Alojamientos<i class="fa fa-bed"></i></a>
-              </li>
-              <li class="active">
-                <a href="#"
-                  >Vuelos<i class="fa fa-plane"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5 col-md-offset-1">
-        <section id="first-tab-group" class="tabgroup">
-          <div id="tab1">
-            <div class="submit-form">
-              <h4>Consultar disponibilidad de vuelos:</h4>
-              <form
-                id="form-submit"
-                action=""
-                method="get"
-                [formGroup]="myForm"
-                (ngSubmit)="onSubmit()"
-              >
+<div class="col-md-5 col-md-offset-1">
+  <section id="first-tab-group" class="tabgroup">
+    <div id="tab1">
+      <div class="submit-form">
+        <h4>Consultar disponibilidad de vuelos:</h4>
+        <form
+          id="form-submit"
+          action=""
+          method="get"
+          [formGroup]="myForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field>
+                  <mat-label>Desde:</mat-label>
+                  <input
+                    formControlName="from"
+                    required
+                    name="from"
+                    matInput
+                    minlength="3"
+                    placeholder="Ingrese una ubicación..."
+                    autocomplete="off"
+                  />
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['minlength']"
+                    >Mínimo <strong>3 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['maxlength']"
+                    >Máximo <strong>15 caracteres</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field>
+                  <mat-label>Hasta:</mat-label>
+                  <input
+                    formControlName="to"
+                    required
+                    name="to"
+                    matInput
+                    placeholder="Ingrese una ubicación..."
+                    autocomplete="off"
+                  />
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['minlength']"
+                    >Mínimo <strong>3 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['maxlength']"
+                    >Máximo <strong>15 caracteres</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill">
+                  <mat-label for="departure">Fecha de salida:</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="pickerDeparture"
+                    formControlName="departure"
+                    name="departure"
+                    placeholder="Seleccione una fecha..."
+                    autocomplete="off"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerDeparture"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #pickerDeparture></mat-datepicker>
+                  <mat-error
+                    *ngIf="(myForm.get('departure')?.touched || myForm.get('departure')?.dirty) && myForm.get('departure')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" *ngIf="round$ | async">
+                  <mat-label for="return">Fecha de regreso:</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="pickerReturn"
+                    formControlName="return"
+                    name="return"
+                    placeholder="Seleccione una fecha..."
+                    autocomplete="off"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerReturn"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #pickerReturn></mat-datepicker>
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <div class="radio-select">
                 <div class="row">
-                  <div class="col-md-6">
-                    <fieldset>
-                      <mat-form-field>
-                        <mat-label>Desde:</mat-label>
-                        <input
-                          formControlName="from"
-                          required
-                          name="from"
-                          matInput
-                          minlength="3"
-                          placeholder="Ingrese una ubicación..."
-                          autocomplete="off"
-                        />
-                        <mat-error *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
-                        <mat-error *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['minlength']">Mínimo <strong>3 caracteres</strong></mat-error>
-                        <mat-error *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['maxlength']">Máximo <strong>15 caracteres</strong></mat-error>
-                      </mat-form-field>
-                    </fieldset>
-                  </div>
-                  <div class="col-md-6">
-                    <fieldset>
-                      <mat-form-field>
-                        <mat-label>Hasta:</mat-label>
-                        <input
-                          formControlName="to"
-                          required
-                          name="to"
-                          matInput
-                          placeholder="Ingrese una ubicación..."
-                          autocomplete="off"
-                        />
-                        <mat-error *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
-                        <mat-error *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['minlength']">Mínimo <strong>3 caracteres</strong></mat-error>
-                        <mat-error *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['maxlength']">Máximo <strong>15 caracteres</strong></mat-error>
-                      </mat-form-field>
-                    </fieldset>
-                  </div>
-                  <div class="col-md-6">
-                    <fieldset>
-                      <mat-form-field appearance="fill">
-                        <mat-label for="departure">Fecha de salida:</mat-label>
-                        <input
-                          matInput
-                          [matDatepicker]="pickerDeparture"
-                          formControlName="departure"
-                          name="departure"
-                          placeholder="Seleccione una fecha..."
-                          autocomplete="off"
-                          required
-                        />
-                        <mat-datepicker-toggle
-                          matSuffix
-                          [for]="pickerDeparture"
-                        ></mat-datepicker-toggle>
-                        <mat-datepicker #pickerDeparture></mat-datepicker>
-                        <mat-error *ngIf="(myForm.get('departure')?.touched || myForm.get('departure')?.dirty) && myForm.get('departure')?.errors?.['required']">Este campo es <strong>requerido</strong></mat-error>
-                      </mat-form-field>
-                    </fieldset>
-                  </div>
-                  <div class="col-md-6">
-                    <fieldset>
-                      <mat-form-field
-                        appearance="fill"
-                        *ngIf="round$ | async"
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <mat-radio-group
+                      aria-label="Seleccione tipo de viaje"
+                      formControlName="trip"
+                    >
+                      <mat-radio-button
+                        name="trip"
+                        id="round"
+                        value="round"
+                        (click)="onClickRound()"
+                        >Ida y Vuelta</mat-radio-button
                       >
-                        <mat-label for="return">Fecha de regreso:</mat-label>
-                        <input
-                          matInput
-                          [matDatepicker]="pickerReturn"
-                          formControlName="return"
-                          name="return"
-                          placeholder="Seleccione una fecha..."
-                          autocomplete="off"
-                        />
-                        <mat-datepicker-toggle
-                          matSuffix
-                          [for]="pickerReturn"
-                        ></mat-datepicker-toggle>
-                        <mat-datepicker #pickerReturn></mat-datepicker>
-                      </mat-form-field>
-                    </fieldset>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="radio-select">
-                      <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                          <mat-radio-group
-                            aria-label="Seleccione tipo de viaje"
-                            formControlName="trip"
-                          >
-                            <mat-radio-button
-                              name="trip"
-                              id="round"
-                              value="round"
-                              (click)="onClickRound()"
-                              >Ida y Vuelta</mat-radio-button
-                            >
-                            <mat-radio-button
-                              name="trip"
-                              id="oneway"
-                              value="one-way"
-                              (click)="onClickOneway()"
-                              >Sólo Ida</mat-radio-button
-                            >
-                          </mat-radio-group>
-                          <div class="invalid-feedback" *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']">Seleccione una opción</div>
-                        </div>
-                      </div>
+                      <mat-radio-button
+                        name="trip"
+                        id="oneway"
+                        value="one-way"
+                        (click)="onClickOneway()"
+                        >Sólo Ida</mat-radio-button
+                      >
+                    </mat-radio-group>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']"
+                    >
+                      Seleccione una opción
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <fieldset>
-                      <button
-                        type="submit"
-                        id="form-submit"
-                        class="btn"
-                        mat-raised-button color="accent"
-                      >
-                        Consultar
-                      </button>
-                    </fieldset>
-                  </div>
                 </div>
-              </form>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <button
+                  type="submit"
+                  id="form-submit"
+                  class="btn"
+                  mat-raised-button
+                  color="accent"
+                >
+                  Consultar
+                </button>
+              </fieldset>
             </div>
           </div>
-        </section>
+        </form>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
