@@ -8,8 +8,7 @@
           action=""
           method="get"
           [formGroup]="myForm"
-          (ngSubmit)="onSubmit()"
-        >
+          (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-md-6">
               <fieldset>
@@ -22,8 +21,7 @@
                     matInput
                     minlength="3"
                     placeholder="Ingrese una ubicación..."
-                    autocomplete="off"
-                  />
+                    autocomplete="off" />
                   <mat-error
                     *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['required']"
                     >Este campo es <strong>requerido</strong></mat-error
@@ -49,8 +47,7 @@
                     name="to"
                     matInput
                     placeholder="Ingrese una ubicación..."
-                    autocomplete="off"
-                  />
+                    autocomplete="off" />
                   <mat-error
                     *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['required']"
                     >Este campo es <strong>requerido</strong></mat-error
@@ -77,12 +74,10 @@
                     name="departure"
                     placeholder="Seleccione una fecha..."
                     autocomplete="off"
-                    required
-                  />
+                    required />
                   <mat-datepicker-toggle
                     matSuffix
-                    [for]="pickerDeparture"
-                  ></mat-datepicker-toggle>
+                    [for]="pickerDeparture"></mat-datepicker-toggle>
                   <mat-datepicker #pickerDeparture></mat-datepicker>
                   <mat-error
                     *ngIf="(myForm.get('departure')?.touched || myForm.get('departure')?.dirty) && myForm.get('departure')?.errors?.['required']"
@@ -101,12 +96,10 @@
                     formControlName="return"
                     name="return"
                     placeholder="Seleccione una fecha..."
-                    autocomplete="off"
-                  />
+                    autocomplete="off" />
                   <mat-datepicker-toggle
                     matSuffix
-                    [for]="pickerReturn"
-                  ></mat-datepicker-toggle>
+                    [for]="pickerReturn"></mat-datepicker-toggle>
                   <mat-datepicker #pickerReturn></mat-datepicker>
                 </mat-form-field>
               </fieldset>
@@ -117,8 +110,7 @@
                   <div class="col-md-6 col-sm-6 col-xs-6">
                     <mat-radio-group
                       aria-label="Seleccione tipo de viaje"
-                      formControlName="trip"
-                    >
+                      formControlName="trip">
                       <mat-radio-button
                         name="trip"
                         id="round"
@@ -136,8 +128,7 @@
                     </mat-radio-group>
                     <div
                       class="invalid-feedback"
-                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']"
-                    >
+                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']">
                       Seleccione una opción
                     </div>
                   </div>
@@ -151,8 +142,7 @@
                   id="form-submit"
                   class="btn"
                   mat-raised-button
-                  color="accent"
-                >
+                  color="accent">
                   Consultar
                 </button>
               </fieldset>
