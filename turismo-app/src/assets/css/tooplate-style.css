@@ -150,11 +150,11 @@ p {
   font-size: 36px;
 }
 
-.banner .social-links li:hover {
+.banner .social-links li:hover, .banner .social-links li.active {
   background-color: rgba(255, 225, 101, 0.5);
 }
 
-.banner .social-links li:hover i {
+.banner .social-links li:hover i, .banner .social-links li.active i {
   background-color: rgba(255, 225, 101, 0.3);
 }
 
