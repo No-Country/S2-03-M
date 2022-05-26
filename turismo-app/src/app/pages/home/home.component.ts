@@ -12,8 +12,6 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 export class HomeComponent implements OnInit {
   myForm!: FormGroup;
   radioBtnError: boolean = false;
-  roundSource = new BehaviorSubject<boolean>(true);
-  round$ = this.roundSource.asObservable();
 
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {}
 
@@ -40,18 +38,17 @@ export class HomeComponent implements OnInit {
         ],
       ],
       departure: ['', [Validators.required]],
-      return: [''],
+      return: ['', [Validators.required]],
       trip: ['', [Validators.required]],
     });
   }
 
   onClickOneway(): void {
-    this.roundSource.next(false);
-    this.myForm.patchValue({ return: '' });
+    this.myForm.controls['return'].disable();
   }
 
   onClickRound(): void {
-    this.roundSource.next(true);
+    this.myForm.controls['return'].enable();
   }
 
   onSubmit(): void {
