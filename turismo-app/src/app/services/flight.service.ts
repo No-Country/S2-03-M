@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class FlightService {
     activateHeaders: boolean
   ): Observable<T> {
     return this.http.get<T>(
-      `http://localhost:5000/city-and-airport-search/${location}`,
+      `${environment.apiUrl}/city-and-airport-search/${location}`,
       activateHeaders ? { headers: this._headers } : {}
     );
   }
@@ -31,14 +32,14 @@ export class FlightService {
     activateHeaders: boolean
   ): Observable<T> {
     return this.http.get<T>(
-      `http://localhost:5000/flight-search?originCode=${originCode}&destinationCode=${destinationCode}&dateOfDeparture=${dateOfDeparture}`,
+      `${environment.apiUrl}/flight-search?originCode=${originCode}&destinationCode=${destinationCode}&dateOfDeparture=${dateOfDeparture}`,
       activateHeaders ? { headers: this._headers } : {}
     );
   }
 
   confirmFlight<T>(data: string, activateHeaders: boolean): Observable<T> {
     return this.http.post<T>(
-      `http://localhost:5000/flight-confirmation`,
+      `${environment.apiUrl}/flight-confirmation`,
       data,
       activateHeaders ? { headers: this._headers } : {}
     );
@@ -46,7 +47,7 @@ export class FlightService {
 
   bookFlight<T>(data: string, activateHeaders: boolean): Observable<T> {
     return this.http.post<T>(
-      `http://localhost:5000/flight-booking`,
+      `${environment.apiUrl}/flight-booking`,
       data,
       activateHeaders ? { headers: this._headers } : {}
     );
