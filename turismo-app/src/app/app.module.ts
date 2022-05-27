@@ -8,9 +8,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { Dialog1Component } from './components/dialog1/dialog1.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SidenavComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    SidenavComponent,
+    Dialog1Component,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

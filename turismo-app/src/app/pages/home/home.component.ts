@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
 import * as _moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { Dialog1Component } from '../../components/dialog1/dialog1.component';
 
 const moment = _moment;
 
@@ -18,7 +15,7 @@ export class HomeComponent implements OnInit {
   myForm!: FormGroup;
   radioBtnError: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
     moment.locale('es');
   }
 
@@ -68,6 +65,7 @@ export class HomeComponent implements OnInit {
     if (this.myForm.invalid) {
       this.myForm.markAllAsTouched();
       this.radioBtnError = true;
+      this.dialog.open(Dialog1Component, { disableClose: true });
       return;
     }
 
