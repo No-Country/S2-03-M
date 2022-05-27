@@ -101,6 +101,10 @@
                     matSuffix
                     [for]="pickerReturn"></mat-datepicker-toggle>
                   <mat-datepicker #pickerReturn></mat-datepicker>
+                  <mat-error
+                    *ngIf="(myForm.get('return')?.touched || myForm.get('return')?.dirty) && myForm.get('return')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
                 </mat-form-field>
               </fieldset>
             </div>
@@ -126,11 +130,10 @@
                         >Sólo Ida</mat-radio-button
                       >
                     </mat-radio-group>
-                    <div
-                      class="invalid-feedback"
-                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']">
-                      Seleccione una opción
-                    </div>
+                    <mat-error
+                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']"
+                      >Seleccione una opción</mat-error
+                    >
                   </div>
                 </div>
               </div>
