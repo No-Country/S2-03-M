@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { Dialog1Component } from '../../components/dialog1/dialog1.component';
+import { FlightService } from '../../services/flight.service';
+import { debounceTime, tap } from 'rxjs';
 
 const moment = _moment;
 
@@ -15,12 +17,29 @@ export class HomeComponent implements OnInit {
   myForm!: FormGroup;
   radioBtnError: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog,
+    private flightSvc: FlightService
+  ) {
     moment.locale('es');
   }
 
   ngOnInit(): void {
     this.myForm = this.initForm();
+  }
+
+  onTypingFrom() {
+    if (this.myForm.get('from')?.value.length >= 3) {
+      this.flightSvc
+        .searchCityAndAirport(this.myForm.get('from')?.value, false)
+        .pipe(
+          tap((res: any) => {
+            console.log(res);
+          })
+        )
+        .subscribe();
+    }
   }
 
   initForm(): FormGroup {
