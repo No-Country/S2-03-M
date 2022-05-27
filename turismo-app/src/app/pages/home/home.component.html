@@ -81,7 +81,7 @@
                   <mat-datepicker #pickerDeparture></mat-datepicker>
                   <mat-error
                     *ngIf="(myForm.get('departure')?.touched || myForm.get('departure')?.dirty) && myForm.get('departure')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
+                    ><strong>Seleccione</strong> una fecha de salida</mat-error
                   >
                 </mat-form-field>
               </fieldset>
@@ -103,7 +103,7 @@
                   <mat-datepicker #pickerReturn></mat-datepicker>
                   <mat-error
                     *ngIf="(myForm.get('return')?.touched || myForm.get('return')?.dirty) && myForm.get('return')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
+                    ><strong>Seleccione</strong> una fecha de regreso</mat-error
                   >
                 </mat-form-field>
               </fieldset>
@@ -132,7 +132,7 @@
                     </mat-radio-group>
                     <mat-error
                       *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']"
-                      >Seleccione una opción</mat-error
+                      ><strong>Seleccione</strong> una opción</mat-error
                     >
                   </div>
                 </div>
