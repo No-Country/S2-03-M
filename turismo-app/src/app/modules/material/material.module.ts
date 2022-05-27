@@ -8,6 +8,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [],
@@ -20,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRadioModule,
     MatButtonModule,
     MatDialogModule,
+    MatMomentDateModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-AR' }],
 })

@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import * as _moment from 'moment';
+
+const moment = _moment;
 
 @Component({
   selector: 'app-home',
@@ -10,7 +18,9 @@ export class HomeComponent implements OnInit {
   myForm!: FormGroup;
   radioBtnError: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+    moment.locale('es');
+  }
 
   ngOnInit(): void {
     this.myForm = this.initForm();
@@ -34,8 +44,14 @@ export class HomeComponent implements OnInit {
           Validators.maxLength(15),
         ],
       ],
-      departure: ['', [Validators.required]],
-      return: ['', [Validators.required]],
+      departure: [
+        this.myForm ? moment(this.myForm.get('departure')?.value) : '',
+        [Validators.required],
+      ],
+      return: [
+        this.myForm ? moment(this.myForm.get('return')?.value) : '',
+        [Validators.required],
+      ],
       trip: ['', [Validators.required]],
     });
   }
@@ -55,6 +71,16 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    console.log('On Submit ->', this.myForm.value);
+    let myForm = {
+      from: this.myForm.get('from')!.value,
+      to: this.myForm.get('to')!.value,
+      departure: this.myForm.get('departure')!.value._d,
+      return:
+        this.myForm.get('trip')!.value === 'round'
+          ? this.myForm.get('return')!.value._d
+          : '',
+      trip: this.myForm.get('trip')!.value,
+    };
+    console.log('On Submit ->', myForm);
   }
 }
