@@ -43,4 +43,4 @@
 /turismo-app/Thumbs.db
 
 # Others
-src/environments/*.local.ts
+*.local.ts
