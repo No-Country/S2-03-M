@@ -41,3 +41,6 @@
 # System files
 /turismo-app/.DS_Store
 /turismo-app/Thumbs.db
+
+# Others
+src/environments/*.local.ts
