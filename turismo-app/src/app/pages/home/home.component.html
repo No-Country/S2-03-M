@@ -23,7 +23,6 @@
                     minlength="3"
                     placeholder="Ingrese una ubicación..."
                     autocomplete="off"
-                    #inputFrom
                     (keyup)="onTypingFrom()" />
                   <mat-error
                     *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['required']"
