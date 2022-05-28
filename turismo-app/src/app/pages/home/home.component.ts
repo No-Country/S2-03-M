@@ -16,8 +16,10 @@ const moment = _moment;
 export class HomeComponent implements OnInit {
   myForm!: FormGroup;
   radioBtnError: boolean = false;
-  locationsSource = new BehaviorSubject<any[]>([]);
-  locations$ = this.locationsSource.asObservable();
+  locationsFromSource = new BehaviorSubject<any[]>([]);
+  locationsFrom$ = this.locationsFromSource.asObservable();
+  locationsToSource = new BehaviorSubject<any[]>([]);
+  locationsTo$ = this.locationsToSource.asObservable();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,7 +40,7 @@ export class HomeComponent implements OnInit {
         .pipe(
           tap((res: any) => {
             // console.log(res);
-            this.locationsSource.next(res.data);
+            this.locationsFromSource.next(res.data);
           })
         )
         .subscribe();
@@ -52,7 +54,7 @@ export class HomeComponent implements OnInit {
         .pipe(
           tap((res: any) => {
             // console.log(res);
-            this.locationsSource.next(res.data);
+            this.locationsToSource.next(res.data);
           })
         )
         .subscribe();

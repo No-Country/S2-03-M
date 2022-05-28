@@ -27,7 +27,7 @@
                     [matAutocomplete]="autoFrom" />
                   <mat-autocomplete #autoFrom="matAutocomplete">
                     <mat-option
-                      *ngFor="let location of locations$ | async"
+                      *ngFor="let location of locationsFrom$ | async"
                       [value]="
                         location.address.cityName + ' - ' + location.iataCode
                       ">
@@ -65,7 +65,7 @@
                     [matAutocomplete]="autoTo" />
                   <mat-autocomplete #autoTo="matAutocomplete">
                     <mat-option
-                      *ngFor="let location of locations$ | async"
+                      *ngFor="let location of locationsTo$ | async"
                       [value]="
                         location.address.cityName + ' - ' + location.iataCode
                       ">
