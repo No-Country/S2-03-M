@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         .searchCityAndAirport(this.myForm.get('from')?.value, false)
         .pipe(
           tap((res: any) => {
-            console.log(res);
+            // console.log(res);
             this.locationsSource.next(res.data);
           })
         )
