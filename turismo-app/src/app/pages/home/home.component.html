@@ -29,14 +29,9 @@
                     <mat-option
                       *ngFor="let location of locations$ | async"
                       [value]="
-                        location.address.cityName +
-                        ' (' +
-                        location.iataCode +
-                        ')'
+                        location.address.cityName + ' - ' + location.iataCode
                       ">
-                      {{ location.address.cityName }}&nbsp;({{
-                        location.iataCode
-                      }})
+                      {{ location.address.cityName }} - {{ location.iataCode }}
                     </mat-option>
                   </mat-autocomplete>
                   <mat-error
