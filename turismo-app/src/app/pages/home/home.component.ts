@@ -6,6 +6,7 @@ import { Dialog1Component } from '../../components/dialog1/dialog1.component';
 import { FlightService } from '../../services/flight.service';
 import { BehaviorSubject, tap } from 'rxjs';
 import { ILocation } from '../../interfaces/location.interface';
+import { Router } from '@angular/router';
 
 const moment = _moment;
 
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private flightSvc: FlightService
+    private flightSvc: FlightService,
+    private router: Router
   ) {
     moment.locale('es');
   }
@@ -119,6 +121,9 @@ export class HomeComponent implements OnInit {
       trip: this.myForm.get('trip')!.value,
     };
     console.log('On Submit ->', myForm);
+
+    this.flightSvc.flightQuerySource.next(myForm);
+    this.router.navigate(['/flight-offers']);
 
     /* this.flightSvc.findFlight<Flight[]>(this.origin.iataCode, this.destination.iataCode, this.date, true)
         .pipe(

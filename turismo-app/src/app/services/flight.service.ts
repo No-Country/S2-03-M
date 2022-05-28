@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class FlightService {
   private _headers!: HttpHeaders;
+  public flightQuerySource = new BehaviorSubject<any>({});
+  public flightQuery$ = this.flightQuerySource.asObservable();
 
   constructor(private http: HttpClient) {
     this._headers = new HttpHeaders({
