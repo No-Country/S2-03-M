@@ -108,8 +108,8 @@ export class HomeComponent implements OnInit {
     }
 
     let myForm = {
-      from: this.myForm.get('from')!.value,
-      to: this.myForm.get('to')!.value,
+      from: this.myForm.get('from')!.value.slice(-3),
+      to: this.myForm.get('to')!.value.slice(-3),
       departure: this.myForm.get('departure')!.value._d,
       return:
         this.myForm.get('trip')!.value === 'round'
@@ -118,5 +118,25 @@ export class HomeComponent implements OnInit {
       trip: this.myForm.get('trip')!.value,
     };
     console.log('On Submit ->', myForm);
+
+    /* this.flightSvc.findFlight<Flight[]>(this.origin.iataCode, this.destination.iataCode, this.date, true)
+        .pipe(
+          debounceTime(2000),
+          tap((res: any) => {
+            console.log(res);
+
+          }),
+        ).subscribe({
+          next: (res: any) => {
+            this.flights = res.data;
+            console.log(this.flights);
+            this.departureDateTemplate = false;
+            this.flightTemplate = true;
+          },
+          error: (error: any) => {
+            console.log(error);
+
+          }
+        }); */
   }
 }
