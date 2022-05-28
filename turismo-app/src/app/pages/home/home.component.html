@@ -23,7 +23,22 @@
                     minlength="3"
                     placeholder="Ingrese una ubicación..."
                     autocomplete="off"
-                    (keyup)="onTypingFrom()" />
+                    (keyup)="onTypingFrom()"
+                    [matAutocomplete]="autoFrom" />
+                  <mat-autocomplete #autoFrom="matAutocomplete">
+                    <mat-option
+                      *ngFor="let location of locations$ | async"
+                      [value]="
+                        location.address.cityName +
+                        ' (' +
+                        location.iataCode +
+                        ')'
+                      ">
+                      {{ location.address.cityName }}&nbsp;({{
+                        location.iataCode
+                      }})
+                    </mat-option>
+                  </mat-autocomplete>
                   <mat-error
                     *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['required']"
                     >Este campo es <strong>requerido</strong></mat-error
@@ -34,7 +49,7 @@
                   >
                   <mat-error
                     *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['maxlength']"
-                    >Máximo <strong>15 caracteres</strong></mat-error
+                    >Máximo <strong>50 caracteres</strong></mat-error
                   >
                 </mat-form-field>
               </fieldset>
@@ -61,7 +76,7 @@
                   >
                   <mat-error
                     *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['maxlength']"
-                    >Máximo <strong>15 caracteres</strong></mat-error
+                    >Máximo <strong>50 caracteres</strong></mat-error
                   >
                 </mat-form-field>
               </fieldset>

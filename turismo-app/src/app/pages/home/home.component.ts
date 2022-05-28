@@ -4,7 +4,7 @@ import * as _moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { Dialog1Component } from '../../components/dialog1/dialog1.component';
 import { FlightService } from '../../services/flight.service';
-import { debounceTime, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
 const moment = _moment;
 
@@ -16,6 +16,8 @@ const moment = _moment;
 export class HomeComponent implements OnInit {
   myForm!: FormGroup;
   radioBtnError: boolean = false;
+  locationsSource = new BehaviorSubject<any[]>([]);
+  locations$ = this.locationsSource.asObservable();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class HomeComponent implements OnInit {
         .pipe(
           tap((res: any) => {
             console.log(res);
+            this.locationsSource.next(res.data);
           })
         )
         .subscribe();
@@ -49,7 +52,7 @@ export class HomeComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(15),
+          Validators.maxLength(50),
         ],
       ],
       to: [
@@ -57,7 +60,7 @@ export class HomeComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(15),
+          Validators.maxLength(50),
         ],
       ],
       departure: [

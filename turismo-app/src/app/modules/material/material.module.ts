@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -22,6 +23,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatButtonModule,
     MatDialogModule,
     MatMomentDateModule,
+    MatAutocompleteModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-AR' }],
 })
