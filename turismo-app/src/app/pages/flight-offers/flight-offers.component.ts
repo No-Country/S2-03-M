@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlightService } from '../../services/flight.service';
-import { tap } from 'rxjs';
+import { map, mergeMap, of, tap, zip } from 'rxjs';
+import { Flight } from 'src/app/interfaces/flight.interface';
 
 @Component({
   selector: 'app-flight-offers',
@@ -8,6 +9,7 @@ import { tap } from 'rxjs';
   styleUrls: ['./flight-offers.component.scss'],
 })
 export class FlightOffersComponent implements OnInit {
+  flightOffers: any;
   constructor(private flightSvc: FlightService) {}
 
   ngOnInit(): void {
@@ -15,6 +17,21 @@ export class FlightOffersComponent implements OnInit {
       .pipe(
         tap((res: any) => {
           console.log(res);
+        }),
+        mergeMap((res: any) =>
+          zip(
+            of(res),
+            this.flightSvc.findFlight<Flight[]>(
+              res.from,
+              res.to,
+              res.departure,
+              true
+            )
+          )
+        ),
+        map((res: any) => {
+          console.log(res);
+          this.flightOffers = res[1].data;
         })
       )
       .subscribe();

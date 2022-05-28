@@ -83,7 +83,9 @@ export class HomeComponent implements OnInit {
         ],
       ],
       departure: [
-        this.myForm ? moment(this.myForm.get('departure')?.value) : '',
+        this.myForm
+          ? moment(this.myForm.get('departure')?.value).format('YYYY-MM-DD')
+          : '',
         [Validators.required],
       ],
       return: [
@@ -113,7 +115,9 @@ export class HomeComponent implements OnInit {
     let myForm = {
       from: this.myForm.get('from')!.value.slice(-3),
       to: this.myForm.get('to')!.value.slice(-3),
-      departure: this.myForm.get('departure')!.value._d,
+      departure: moment(this.myForm.get('departure')!.value).format(
+        'YYYY-MM-DD'
+      ),
       return:
         this.myForm.get('trip')!.value === 'round'
           ? this.myForm.get('return')!.value._d
@@ -124,25 +128,5 @@ export class HomeComponent implements OnInit {
 
     this.flightSvc.flightQuerySource.next(myForm);
     this.router.navigate(['/flight-offers']);
-
-    /* this.flightSvc.findFlight<Flight[]>(this.origin.iataCode, this.destination.iataCode, this.date, true)
-        .pipe(
-          debounceTime(2000),
-          tap((res: any) => {
-            console.log(res);
-
-          }),
-        ).subscribe({
-          next: (res: any) => {
-            this.flights = res.data;
-            console.log(this.flights);
-            this.departureDateTemplate = false;
-            this.flightTemplate = true;
-          },
-          error: (error: any) => {
-            console.log(error);
-
-          }
-        }); */
   }
 }
