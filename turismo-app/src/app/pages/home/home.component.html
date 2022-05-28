@@ -61,7 +61,17 @@
                     matInput
                     placeholder="Ingrese una ubicación..."
                     autocomplete="off"
-                    (keyup)="onTypingTo()" />
+                    (keyup)="onTypingTo()"
+                    [matAutocomplete]="autoTo" />
+                  <mat-autocomplete #autoTo="matAutocomplete">
+                    <mat-option
+                      *ngFor="let location of locations$ | async"
+                      [value]="
+                        location.address.cityName + ' - ' + location.iataCode
+                      ">
+                      {{ location.address.cityName }} - {{ location.iataCode }}
+                    </mat-option>
+                  </mat-autocomplete>
                   <mat-error
                     *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['required']"
                     >Este campo es <strong>requerido</strong></mat-error
