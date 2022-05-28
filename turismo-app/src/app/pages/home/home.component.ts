@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Dialog1Component } from '../../components/dialog1/dialog1.component';
 import { FlightService } from '../../services/flight.service';
 import { BehaviorSubject, tap } from 'rxjs';
+import { ILocation } from '../../interfaces/location.interface';
 
 const moment = _moment;
 
@@ -16,9 +17,9 @@ const moment = _moment;
 export class HomeComponent implements OnInit {
   myForm!: FormGroup;
   radioBtnError: boolean = false;
-  locationsFromSource = new BehaviorSubject<any[]>([]);
+  locationsFromSource = new BehaviorSubject<ILocation[]>([]);
   locationsFrom$ = this.locationsFromSource.asObservable();
-  locationsToSource = new BehaviorSubject<any[]>([]);
+  locationsToSource = new BehaviorSubject<ILocation[]>([]);
   locationsTo$ = this.locationsToSource.asObservable();
 
   constructor(
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit {
         .searchCityAndAirport(this.myForm.get('from')?.value, false)
         .pipe(
           tap((res: any) => {
-            // console.log(res);
+            // console.log(res.data);
             this.locationsFromSource.next(res.data);
           })
         )
