@@ -60,7 +60,8 @@
                     name="to"
                     matInput
                     placeholder="Ingrese una ubicación..."
-                    autocomplete="off" />
+                    autocomplete="off"
+                    (keyup)="onTypingTo()" />
                   <mat-error
                     *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['required']"
                     >Este campo es <strong>requerido</strong></mat-error

@@ -45,6 +45,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  onTypingTo() {
+    if (this.myForm.get('to')?.value.length >= 3) {
+      this.flightSvc
+        .searchCityAndAirport(this.myForm.get('to')?.value, false)
+        .pipe(
+          tap((res: any) => {
+            // console.log(res);
+            this.locationsSource.next(res.data);
+          })
+        )
+        .subscribe();
+    }
+  }
+
   initForm(): FormGroup {
     return this.formBuilder.group({
       from: [
