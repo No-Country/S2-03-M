@@ -10,6 +10,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { Dialog1Component } from './components/dialog1/dialog1.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FlightOffersComponent } from './pages/flight-offers/flight-offers.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     SidenavComponent,
     Dialog1Component,
+    FlightOffersComponent,
   ],
   imports: [
     BrowserModule,
