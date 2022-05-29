@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlightService } from '../../services/flight.service';
 import { map, mergeMap, of, tap, zip } from 'rxjs';
 import { Flight } from 'src/app/interfaces/flight.interface';
+import * as _moment from 'moment';
 
 @Component({
   selector: 'app-flight-offers',
@@ -11,6 +12,7 @@ import { Flight } from 'src/app/interfaces/flight.interface';
 export class FlightOffersComponent implements OnInit {
   flightQuery: any;
   flightOffers: any;
+  moment = _moment;
   constructor(private flightSvc: FlightService) {}
 
   ngOnInit(): void {

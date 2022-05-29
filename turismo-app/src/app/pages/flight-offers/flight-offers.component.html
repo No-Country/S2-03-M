@@ -15,18 +15,21 @@
       <div class="card-body">
         Número de asientos disponibles: {{ flight.numberOfBookableSeats }}
         <br />
-        Última fecha de emisión de boletos: {{ flight.lastTicketingDate }}
+        Última fecha de emisión de boletos:
+        {{ moment(flight.lastTicketingDate).format('DD-MM-YYYY') }}
         <hr />
         <h5>Itinerarios</h5>
         Duración: {{ flight.itineraries[0].duration }}
 
         <p *ngFor="let i of flight.itineraries[0].segments">
           <strong>Salida:</strong> {{ i.departure.iataCode }}
-          <strong>en</strong> {{ i.departure.at }}
+          <strong>en</strong>
+          {{ moment(i.departure.at).format('DD-MM-YYYY hh:mm a') }}
           <em>(Terminal: {{ i.departure.terminal }})</em>
           &nbsp;
           <strong>Llegada:</strong> {{ i.arrival.iataCode }}
-          <strong>en</strong> {{ i.arrival.at }}
+          <strong>en</strong>
+          {{ moment(i.arrival.at).format('DD-MM-YYYY hh:mm a') }}
           <em>(Terminal: {{ i.arrival.terminal }})</em>
           &nbsp;
           <strong>Número de paradas:</strong> {{ i.numberOfStops }}
