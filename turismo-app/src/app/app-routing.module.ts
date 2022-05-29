@@ -4,9 +4,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { FlightOffersComponent } from './pages/flight-offers/flight-offers.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'flight-offers', component: FlightOffersComponent },
-  { path: '**', pathMatch: 'full', redirectTo: '' },
+  { path: 'vuelos', component: HomeComponent },
+  { path: 'vuelos-disponibles', component: FlightOffersComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'vuelos' },
 ];
 
 @NgModule({

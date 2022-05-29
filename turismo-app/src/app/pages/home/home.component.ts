@@ -129,6 +129,6 @@ export class HomeComponent implements OnInit {
     console.log('On Submit ->', myForm);
 
     this.flightSvc.flightQuerySource.next(myForm);
-    this.router.navigate(['/flight-offers']);
+    this.router.navigate(['/vuelos-disponibles']);
   }
 }
