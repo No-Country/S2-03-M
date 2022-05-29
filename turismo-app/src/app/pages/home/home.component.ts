@@ -89,7 +89,9 @@ export class HomeComponent implements OnInit {
         [Validators.required],
       ],
       return: [
-        this.myForm ? moment(this.myForm.get('return')?.value) : '',
+        this.myForm
+          ? moment(this.myForm.get('return')?.value).format('YYYY-MM-DD')
+          : '',
         [Validators.required],
       ],
       trip: ['', [Validators.required]],
@@ -120,7 +122,7 @@ export class HomeComponent implements OnInit {
       ),
       return:
         this.myForm.get('trip')!.value === 'round'
-          ? this.myForm.get('return')!.value._d
+          ? moment(this.myForm.get('return')!.value).format('YYYY-MM-DD')
           : '',
       trip: this.myForm.get('trip')!.value,
     };
