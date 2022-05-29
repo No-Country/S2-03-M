@@ -4,7 +4,11 @@
       Vuelos disponibles ({{ flightQuery?.from }} - {{ flightQuery?.to }}):
     </h4>
 
-    <div class="card mb-3 mt-3" *ngFor="let flight of flightOffers">
+    <div class="centered" *ngIf="!flightOffers && !flightQuery">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="card mb-5" *ngFor="let flight of flightOffers">
       <div class="card-header">
         <b>Precio:</b> {{ flight.price.total }} ({{ flight.price.currency }})
       </div>
@@ -27,22 +31,6 @@
           &nbsp;
           <strong>Número de paradas:</strong> {{ i.numberOfStops }}
         </p>
-
-        <hr />
-
-        <h5>Ingrese sus datos:</h5>
-
-        <input
-          type="text"
-          name="first"
-          placeholder="Su nombre"
-          class="form-control" />
-        <br />
-        <input
-          type="text"
-          name="last"
-          placeholder="Su apellido"
-          class="form-control" />
       </div>
       <div class="card-footer">
         <button class="btn btn-warning">Reservar vuelo</button>
