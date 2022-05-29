@@ -9,6 +9,7 @@ import { Flight } from 'src/app/interfaces/flight.interface';
   styleUrls: ['./flight-offers.component.scss'],
 })
 export class FlightOffersComponent implements OnInit {
+  flightQuery: any;
   flightOffers: any;
   constructor(private flightSvc: FlightService) {}
 
@@ -31,6 +32,7 @@ export class FlightOffersComponent implements OnInit {
         ),
         map((res: any) => {
           console.log(res);
+          this.flightQuery = res[0];
           this.flightOffers = res[1].data;
         })
       )
