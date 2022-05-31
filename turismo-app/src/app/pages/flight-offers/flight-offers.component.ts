@@ -3,6 +3,7 @@ import { FlightService } from '../../services/flight.service';
 import { map, mergeMap, of, tap, zip } from 'rxjs';
 import { Flight } from 'src/app/interfaces/flight.interface';
 import * as _moment from 'moment';
+import { FlightQuery } from '../../interfaces/flight-query.interface';
 
 @Component({
   selector: 'app-flight-offers',
@@ -10,18 +11,18 @@ import * as _moment from 'moment';
   styleUrls: ['./flight-offers.component.scss'],
 })
 export class FlightOffersComponent implements OnInit {
-  flightQuery: any;
-  flightOffers: any;
-  moment = _moment;
+  public flightQuery!: FlightQuery;
+  public flightOffers!: Flight[];
+  public moment = _moment;
   constructor(private flightSvc: FlightService) {}
 
   ngOnInit(): void {
     this.flightSvc.flightQuery$
       .pipe(
-        tap((res: any) => {
+        tap((res: FlightQuery) => {
           console.log(res);
         }),
-        mergeMap((res: any) =>
+        mergeMap((res: FlightQuery) =>
           zip(
             of(res),
             this.flightSvc.findFlight<Flight[]>(
@@ -32,8 +33,10 @@ export class FlightOffersComponent implements OnInit {
             )
           )
         ),
-        map((res: any) => {
-          console.log(res);
+        map((res: [FlightQuery, any]) => {
+          console.log('FlightQuery', res[0]);
+          console.log('FlightOffers', res[1].data);
+
           this.flightQuery = res[0];
           this.flightOffers = res[1].data;
         })
