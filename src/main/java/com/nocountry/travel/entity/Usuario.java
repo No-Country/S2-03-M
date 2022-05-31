@@ -14,8 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
 public class Usuario {
     
@@ -24,7 +22,7 @@ public class Usuario {
     private int id;
     @NotNull
     @Column(unique = true)
-    private String mail;
+    private String email;
     @NotNull
     private String password;
     @ManyToMany(fetch = FetchType.EAGER) //indexa todo
@@ -33,8 +31,8 @@ public class Usuario {
     private Set<Rol> roles = new HashSet<>();
     public Usuario() {
     }
-    public Usuario(@NotNull String mail, @NotNull String password) {
-        this.mail = mail;
+    public Usuario(@NotNull String email, @NotNull String password) {
+        this.email = email;
         this.password = password;
     }
     public int getId() {
@@ -43,11 +41,11 @@ public class Usuario {
     public void setId(int id) {
         this.id = id;
     }
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
     public String getPassword() {
         return password;
