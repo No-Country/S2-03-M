@@ -2,13 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { FlightQuery } from '../interfaces/flight-query.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlightService {
   private _headers!: HttpHeaders;
-  public flightQuerySource = new BehaviorSubject<any>({});
+  public flightQuerySource = new BehaviorSubject<FlightQuery>({
+    from: '',
+    to: '',
+    departure: '',
+    return: '',
+    trip: '',
+  });
   public flightQuery$ = this.flightQuerySource.asObservable();
 
   constructor(private http: HttpClient) {

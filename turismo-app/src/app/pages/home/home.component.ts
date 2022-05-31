@@ -7,6 +7,7 @@ import { FlightService } from '../../services/flight.service';
 import { BehaviorSubject, tap } from 'rxjs';
 import { ILocation } from '../../interfaces/location.interface';
 import { Router } from '@angular/router';
+import { FlightQuery } from '../../interfaces/flight-query.interface';
 
 const moment = _moment;
 
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.myForm = this.initForm();
   }
 
-  onTypingFrom() {
+  onTypingFrom(): void {
     if (this.myForm.get('from')?.value.length >= 3) {
       this.flightSvc
         .searchCityAndAirport(this.myForm.get('from')?.value, false)
@@ -50,7 +51,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onTypingTo() {
+  onTypingTo(): void {
     if (this.myForm.get('to')?.value.length >= 3) {
       this.flightSvc
         .searchCityAndAirport(this.myForm.get('to')?.value, false)
@@ -114,7 +115,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    let myForm = {
+    let myForm: FlightQuery = {
       from: this.myForm.get('from')!.value.slice(-3),
       to: this.myForm.get('to')!.value.slice(-3),
       departure: moment(this.myForm.get('departure')!.value).format(
