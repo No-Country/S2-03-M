@@ -9,14 +9,6 @@ import { FlightQuery } from '../interfaces/flight-query.interface';
 })
 export class FlightService {
   private _headers!: HttpHeaders;
-  public flightQuerySource = new BehaviorSubject<FlightQuery>({
-    from: '',
-    to: '',
-    departure: '',
-    return: '',
-    trip: '',
-  });
-  public flightQuery$ = this.flightQuerySource.asObservable();
 
   constructor(private http: HttpClient) {
     this._headers = new HttpHeaders({

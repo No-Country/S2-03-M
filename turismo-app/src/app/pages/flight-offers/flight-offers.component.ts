@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FlightService } from '../../services/flight.service';
-import { map, mergeMap, of, tap, zip } from 'rxjs';
+import { map, mergeMap, of, tap, zip, BehaviorSubject } from 'rxjs';
 import { Flight } from 'src/app/interfaces/flight.interface';
 import * as _moment from 'moment';
 import { FlightQuery } from '../../interfaces/flight-query.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flight-offers',
@@ -12,12 +13,27 @@ import { FlightQuery } from '../../interfaces/flight-query.interface';
 })
 export class FlightOffersComponent implements OnInit {
   public flightQuery!: FlightQuery;
+  public fligthQuerySource = new BehaviorSubject<FlightQuery>({
+    from: '',
+    to: '',
+    departure: '',
+    return: '',
+    trip: '',
+  });
+  public flightQuery$ = this.fligthQuerySource.asObservable();
   public flightOffers!: Flight[];
   public moment = _moment;
-  constructor(private flightSvc: FlightService) {}
+  constructor(private flightSvc: FlightService, private router: Router) {}
 
   ngOnInit(): void {
-    this.flightSvc.flightQuery$
+    const flightQuery = localStorage.getItem('flightQuery');
+    if (flightQuery !== null) {
+      this.fligthQuerySource.next(JSON.parse(flightQuery));
+    } else {
+      this.router.navigate(['/']);
+    }
+
+    this.flightQuery$
       .pipe(
         tap((res: FlightQuery) => {
           console.log(res);

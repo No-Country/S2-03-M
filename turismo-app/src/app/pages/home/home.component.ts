@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit {
     };
     console.log('On Submit ->', myForm);
 
-    this.flightSvc.flightQuerySource.next(myForm);
+    localStorage.setItem('flightQuery', JSON.stringify(myForm));
     this.router.navigate(['/vuelos-disponibles']);
   }
 }
