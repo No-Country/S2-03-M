@@ -11,7 +11,8 @@ export class FlightService {
 
   constructor(private http: HttpClient) {
     this._headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/vnd.amadeus+json',
+      Authorization: `Bearer ${environment.accessToken}`,
     });
   }
 
@@ -20,7 +21,7 @@ export class FlightService {
     activateHeaders: boolean
   ): Observable<T> {
     return this.http.get<T>(
-      `${environment.apiUrl}/city-and-airport-search/${location}`,
+      `${environment.apiUrl}/v1/reference-data/locations?subType=AIRPORT,CITY&keyword=${location}`,
       activateHeaders ? { headers: this._headers } : {}
     );
   }
@@ -32,11 +33,12 @@ export class FlightService {
     activateHeaders: boolean
   ): Observable<T> {
     return this.http.get<T>(
-      `${environment.apiUrl}/flight-search?originCode=${originCode}&destinationCode=${destinationCode}&dateOfDeparture=${dateOfDeparture}`,
+      `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&adults=1&max=10`,
       activateHeaders ? { headers: this._headers } : {}
     );
   }
 
+  // TODO: Cambiar endpoint
   confirmFlight<T>(data: string, activateHeaders: boolean): Observable<T> {
     return this.http.post<T>(
       `${environment.apiUrl}/flight-confirmation`,
@@ -45,6 +47,7 @@ export class FlightService {
     );
   }
 
+  // TODO: Cambiar endpoint
   bookFlight<T>(data: string, activateHeaders: boolean): Observable<T> {
     return this.http.post<T>(
       `${environment.apiUrl}/flight-booking`,

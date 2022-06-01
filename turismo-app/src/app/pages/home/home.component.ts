@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   onTypingFrom(): void {
     if (this.myForm.get('from')?.value.length >= 3) {
       this.flightSvc
-        .searchCityAndAirport(this.myForm.get('from')?.value, false)
+        .searchCityAndAirport(this.myForm.get('from')?.value, true)
         .pipe(
           tap((res: any) => {
             // console.log(res.data);
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   onTypingTo(): void {
     if (this.myForm.get('to')?.value.length >= 3) {
       this.flightSvc
-        .searchCityAndAirport(this.myForm.get('to')?.value, false)
+        .searchCityAndAirport(this.myForm.get('to')?.value, true)
         .pipe(
           tap((res: any) => {
             // console.log(res);
