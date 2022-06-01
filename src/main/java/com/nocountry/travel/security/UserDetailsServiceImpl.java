@@ -14,6 +14,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     UsuarioService usuarioService;
 
 
+    public UserDetailsServiceImpl() {
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         try {
