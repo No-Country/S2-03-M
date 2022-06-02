@@ -11,8 +11,67 @@
           (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-md-6">
+              <div class="radio-select">
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <mat-radio-group
+                      aria-label="Seleccione tipo de viaje"
+                      formControlName="trip">
+                      <mat-radio-button
+                        tabIndex="5"
+                        name="trip"
+                        id="round"
+                        value="round"
+                        (click)="onClickRound()"
+                        >Ida y Vuelta</mat-radio-button
+                      >
+                      <mat-radio-button
+                        name="trip"
+                        id="oneway"
+                        value="one-way"
+                        (click)="onClickOneway()"
+                        >Sólo Ida</mat-radio-button
+                      >
+                    </mat-radio-group>
+                    <mat-error
+                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']"
+                      ><strong>Seleccione</strong> una opción</mat-error
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
               <fieldset>
-                <mat-form-field>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Pasajeros</mat-label>
+                  <input
+                    formControlName="passengers"
+                    tabindex="6"
+                    matInput
+                    type="number"
+                    min="1"
+                    max="10"
+                    value="1"
+                    required />
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['min']"
+                    >El mínimo es de 1 pasajero</mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['max']"
+                    >El máximo es de 9 pasajeros</mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
                   <mat-label>Desde:</mat-label>
                   <input
                     tabindex="1"
@@ -51,7 +110,7 @@
             </div>
             <div class="col-md-6">
               <fieldset>
-                <mat-form-field>
+                <mat-form-field appearance="fill" class="w-100">
                   <mat-label>Hasta:</mat-label>
                   <input
                     tabindex="2"
@@ -89,7 +148,7 @@
             </div>
             <div class="col-md-6">
               <fieldset>
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="fill" class="w-100">
                   <mat-label for="departure">Fecha de salida:</mat-label>
                   <input
                     matInput
@@ -114,7 +173,7 @@
             </div>
             <div class="col-md-6">
               <fieldset>
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="fill" class="w-100">
                   <mat-label for="return">Fecha de regreso:</mat-label>
                   <input
                     matInput
@@ -136,65 +195,7 @@
                 </mat-form-field>
               </fieldset>
             </div>
-            <div class="col-md-6">
-              <div class="radio-select">
-                <div class="row">
-                  <div class="col-md-6 col-sm-6 col-xs-6">
-                    <mat-radio-group
-                      aria-label="Seleccione tipo de viaje"
-                      formControlName="trip">
-                      <mat-radio-button
-                        tabIndex="5"
-                        name="trip"
-                        id="round"
-                        value="round"
-                        (click)="onClickRound()"
-                        >Ida y Vuelta</mat-radio-button
-                      >
-                      <mat-radio-button
-                        name="trip"
-                        id="oneway"
-                        value="one-way"
-                        (click)="onClickOneway()"
-                        >Sólo Ida</mat-radio-button
-                      >
-                    </mat-radio-group>
-                    <mat-error
-                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']"
-                      ><strong>Seleccione</strong> una opción</mat-error
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <fieldset>
-                <mat-form-field appearance="fill">
-                  <mat-label>Pasajeros</mat-label>
-                  <input
-                    formControlName="passengers"
-                    tabindex="6"
-                    matInput
-                    type="number"
-                    min="1"
-                    max="10"
-                    value="1"
-                    required />
-                  <mat-error
-                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['min']"
-                    >El mínimo es de 1 pasajero</mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['max']"
-                    >El máximo es de 9 pasajeros</mat-error
-                  >
-                </mat-form-field>
-              </fieldset>
-            </div>
+
             <div class="col-md-12">
               <fieldset>
                 <button
