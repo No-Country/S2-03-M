@@ -6,6 +6,15 @@ export const environment = {
   production: false,
   apiUrl: '',
   accessToken: '',
+  firebase: {
+    apiKey: '',
+    authDomain: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: '',
+    measurementId: '',
+  },
 };
 
 /*

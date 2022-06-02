@@ -117,7 +117,7 @@ p {
   transition: all 0.5s;
 }
 
-.banner .social-links a {
+.banner .social-links a, .banner .social-links button {
   display: block;
   transition: all 0.5s;
   text-align: left;

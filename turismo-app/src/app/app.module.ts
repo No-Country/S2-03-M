@@ -12,6 +12,9 @@ import { Dialog1Component } from './components/dialog1/dialog1.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightOffersComponent } from './pages/flight-offers/flight-offers.component';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,7 @@ import { FlightOffersComponent } from './pages/flight-offers/flight-offers.compo
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent],
