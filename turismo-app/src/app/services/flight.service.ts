@@ -30,12 +30,21 @@ export class FlightService {
     originCode: string,
     destinationCode: string,
     dateOfDeparture: string,
+    dateOfReturn: string,
+    passengers: number,
     activateHeaders: boolean
   ): Observable<T> {
-    return this.http.get<T>(
-      `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&adults=1&max=10`,
-      activateHeaders ? { headers: this._headers } : {}
-    );
+    if (dateOfReturn === '') {
+      return this.http.get<T>(
+        `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&adults=${passengers}&max=10`,
+        activateHeaders ? { headers: this._headers } : {}
+      );
+    } else {
+      return this.http.get<T>(
+        `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&returnDate=${dateOfReturn}&adults=${passengers}&max=10`,
+        activateHeaders ? { headers: this._headers } : {}
+      );
+    }
   }
 
   // TODO: Cambiar endpoint

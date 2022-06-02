@@ -169,8 +169,36 @@
             </div>
             <div class="col-md-6">
               <fieldset>
+                <mat-form-field appearance="fill">
+                  <mat-label>Pasajeros</mat-label>
+                  <input
+                    formControlName="passengers"
+                    tabindex="6"
+                    matInput
+                    type="number"
+                    min="1"
+                    max="10"
+                    value="1"
+                    required />
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['min']"
+                    >El mínimo es de 1 pasajero</mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['max']"
+                    >El máximo es de 9 pasajeros</mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-12">
+              <fieldset>
                 <button
-                  tabindex="6"
+                  tabindex="7"
                   type="submit"
                   id="form-submit"
                   class="btn"

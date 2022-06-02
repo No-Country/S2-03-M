@@ -96,6 +96,10 @@ export class HomeComponent implements OnInit {
         [Validators.required],
       ],
       trip: ['', [Validators.required]],
+      passengers: [
+        1,
+        [Validators.required, Validators.min(1), Validators.max(9)],
+      ],
     });
   }
 
@@ -126,6 +130,7 @@ export class HomeComponent implements OnInit {
           ? moment(this.myForm.get('return')!.value).format('YYYY-MM-DD')
           : '',
       trip: this.myForm.get('trip')!.value,
+      passengers: this.myForm.get('passengers')!.value,
     };
     console.log('On Submit ->', myForm);
 

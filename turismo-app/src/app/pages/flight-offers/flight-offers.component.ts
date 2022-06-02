@@ -19,6 +19,7 @@ export class FlightOffersComponent implements OnInit {
     departure: '',
     return: '',
     trip: '',
+    passengers: 1,
   });
   public flightQuery$ = this.fligthQuerySource.asObservable();
   public flightOffers!: Flight[];
@@ -45,6 +46,8 @@ export class FlightOffersComponent implements OnInit {
               res.from,
               res.to,
               res.departure,
+              res.return,
+              res.passengers,
               true
             )
           )
