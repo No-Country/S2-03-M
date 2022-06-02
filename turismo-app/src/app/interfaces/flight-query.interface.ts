@@ -5,4 +5,5 @@ export interface FlightQuery {
   return: string;
   trip: string;
   passengers: number;
+  travelClass: string;
 }

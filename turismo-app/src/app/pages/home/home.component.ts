@@ -100,6 +100,7 @@ export class HomeComponent implements OnInit {
         1,
         [Validators.required, Validators.min(1), Validators.max(9)],
       ],
+      travelClass: ['', [Validators.required]],
     });
   }
 
@@ -131,6 +132,7 @@ export class HomeComponent implements OnInit {
           : '',
       trip: this.myForm.get('trip')!.value,
       passengers: this.myForm.get('passengers')!.value,
+      travelClass: this.myForm.get('travelClass')!.value,
     };
     console.log('On Submit ->', myForm);
 

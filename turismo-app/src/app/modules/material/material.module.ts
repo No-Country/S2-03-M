@@ -12,7 +12,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -28,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatSelectModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-AR' }],
 })

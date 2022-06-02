@@ -25,23 +25,24 @@ export class FlightService {
       activateHeaders ? { headers: this._headers } : {}
     );
   }
-
+  // https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-11-01&returnDate=2022-11-10&adults=2&travelClass=ECONOMY&nonStop=false&max=10
   findFlight<T>(
     originCode: string,
     destinationCode: string,
     dateOfDeparture: string,
     dateOfReturn: string,
     passengers: number,
+    travelClass: string,
     activateHeaders: boolean
   ): Observable<T> {
     if (dateOfReturn === '') {
       return this.http.get<T>(
-        `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&adults=${passengers}&max=10`,
+        `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&adults=${passengers}&travelClass=${travelClass}&max=10`,
         activateHeaders ? { headers: this._headers } : {}
       );
     } else {
       return this.http.get<T>(
-        `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&returnDate=${dateOfReturn}&adults=${passengers}&max=10`,
+        `${environment.apiUrl}/v2/shopping/flight-offers?originLocationCode=${originCode}&destinationLocationCode=${destinationCode}&departureDate=${dateOfDeparture}&returnDate=${dateOfReturn}&adults=${passengers}&travelClass=${travelClass}&max=10`,
         activateHeaders ? { headers: this._headers } : {}
       );
     }

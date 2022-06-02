@@ -8,6 +8,10 @@
       <mat-spinner></mat-spinner>
     </div>
 
+    <h5 *ngIf="flightOffers?.length === 0">
+      No se encontraron vuelos disponibles que coincidan con la búsqueda.
+    </h5>
+
     <mat-card class="card mb-5" *ngFor="let flight of flightOffers">
       <div class="card-header">
         <b>Precio:</b> {{ flight.price.total }} ({{ flight.price.currency }})
