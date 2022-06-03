@@ -117,7 +117,7 @@ p {
   transition: all 0.5s;
 }
 
-.banner .social-links a, .banner .social-links button {
+.banner .social-links a {
   display: block;
   transition: all 0.5s;
   text-align: left;
@@ -133,6 +133,35 @@ p {
   line-height: 60px;
   padding-left: 20px;
   background-color: rgba(250, 250, 250, 0.1);
+}
+
+.banner .social-links .google-login {
+  display: block;
+  transition: all 0.5s;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 400;
+  display: inline-block;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 20px;
+  background-color: #E34133;
+  cursor: pointer;
+}
+
+.banner .social-links .google-login i {
+  float: right;
+  background-color: rgba(250, 250, 250, 0.2);
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 36px;
 }
 
 .banner .social-links a em {

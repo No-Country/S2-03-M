@@ -6,7 +6,18 @@
     <div class="tabs-content">
       <ul class="social-links">
         <li>
-          <button (click)="onGoogleLogin()">Ingresar con Google</button>
+          <div *ngIf="auth.user | async as user; else showLogin" class="user">
+            <p>
+              <span>{{ user.displayName }}</span>
+              <img [src]="user.photoURL" alt="" />
+            </p>
+            <button (click)="logout()" class="btn">Cerrar sesión</button>
+          </div>
+          <ng-template #showLogin>
+            <div (click)="onGoogleLogin()" class="google-login">
+              Ingresar con Google <i class="fa fa-google"></i>
+            </div>
+          </ng-template>
         </li>
         <li>
           <a href="#">Alojamientos<i class="fa fa-bed"></i></a>

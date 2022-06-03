@@ -18,4 +18,9 @@ export class OauthService {
       return null;
     }
   }
+
+  async logout() {
+    await this.afAuth.signOut();
+    localStorage.clear();
+  }
 }
