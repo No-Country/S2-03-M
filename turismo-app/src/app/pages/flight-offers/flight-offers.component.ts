@@ -43,7 +43,7 @@ export class FlightOffersComponent implements OnInit {
     this.flightQuery$
       .pipe(
         tap((res: FlightQuery) => {
-          console.log(res);
+          // console.log(res);
         }),
         mergeMap((res: FlightQuery) =>
           zip(
@@ -60,8 +60,8 @@ export class FlightOffersComponent implements OnInit {
           )
         ),
         map((res: [FlightQuery, any]) => {
-          console.log('FlightQuery', res[0]);
-          console.log('FlightOffers', res[1].data);
+          // console.log('FlightQuery', res[0]);
+          // console.log('FlightOffers', res[1].data);
 
           this.flightQuery = res[0];
           this.flightOffers = res[1].data;

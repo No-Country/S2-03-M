@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit {
       passengers: this.myForm.get('passengers')!.value,
       travelClass: this.myForm.get('travelClass')!.value,
     };
-    console.log('On Submit ->', myForm);
+    // console.log('On Submit ->', myForm);
 
     localStorage.setItem('flightQuery', JSON.stringify(myForm));
     this.router.navigate(['/vuelos-disponibles']);
