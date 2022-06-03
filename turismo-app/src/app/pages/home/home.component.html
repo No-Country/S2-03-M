@@ -18,7 +18,7 @@
                       aria-label="Seleccione tipo de viaje"
                       formControlName="trip">
                       <mat-radio-button
-                        tabIndex="5"
+                        tabIndex="1"
                         name="trip"
                         id="round"
                         value="round"
@@ -45,7 +45,7 @@
               <fieldset>
                 <mat-form-field appearance="fill" class="w-100">
                   <mat-label>Clase</mat-label>
-                  <mat-select formControlName="travelClass">
+                  <mat-select formControlName="travelClass" tabIndex="2">
                     <mat-option value="ECONOMY"> Económica </mat-option>
                     <mat-option value="PREMIUM_ECONOMY">
                       Económica Premium
@@ -66,7 +66,7 @@
                   <mat-label>Pasajeros</mat-label>
                   <input
                     formControlName="passengers"
-                    tabindex="6"
+                    tabindex="3"
                     matInput
                     type="number"
                     min="1"
@@ -93,7 +93,7 @@
                 <mat-form-field appearance="fill" class="w-100">
                   <mat-label>Desde:</mat-label>
                   <input
-                    tabindex="1"
+                    tabindex="4"
                     formControlName="from"
                     required
                     name="from"
@@ -132,7 +132,7 @@
                 <mat-form-field appearance="fill" class="w-100">
                   <mat-label>Hasta:</mat-label>
                   <input
-                    tabindex="2"
+                    tabindex="5"
                     formControlName="to"
                     required
                     name="to"
@@ -171,7 +171,7 @@
                   <mat-label for="departure">Fecha de salida:</mat-label>
                   <input
                     matInput
-                    tabindex="3"
+                    tabindex="6"
                     [matDatepicker]="pickerDeparture"
                     formControlName="departure"
                     name="departure"
@@ -196,7 +196,7 @@
                   <mat-label for="return">Fecha de regreso:</mat-label>
                   <input
                     matInput
-                    tabindex="4"
+                    tabindex="7"
                     [matDatepicker]="pickerReturn"
                     formControlName="return"
                     name="return"
@@ -218,7 +218,7 @@
             <div class="col-md-12">
               <fieldset>
                 <button
-                  tabindex="7"
+                  tabindex="8"
                   type="submit"
                   id="form-submit"
                   class="btn"

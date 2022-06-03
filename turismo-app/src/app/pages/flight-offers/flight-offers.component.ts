@@ -5,6 +5,7 @@ import { Flight } from 'src/app/interfaces/flight.interface';
 import * as _moment from 'moment';
 import { FlightQuery } from '../../interfaces/flight-query.interface';
 import { Router } from '@angular/router';
+import { OauthService } from '../../services/oauth.service';
 
 @Component({
   selector: 'app-flight-offers',
@@ -25,7 +26,11 @@ export class FlightOffersComponent implements OnInit {
   public flightQuery$ = this.fligthQuerySource.asObservable();
   public flightOffers!: Flight[];
   public moment = _moment;
-  constructor(private flightSvc: FlightService, private router: Router) {}
+  constructor(
+    private flightSvc: FlightService,
+    private router: Router,
+    private oauthSvc: OauthService
+  ) {}
 
   ngOnInit(): void {
     const flightQuery = localStorage.getItem('flightQuery');
@@ -63,5 +68,13 @@ export class FlightOffersComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  onBooking(flight: Flight) {
+    console.log(flight);
+
+    this.oauthSvc.signInWithGoogle().then(data => {
+      console.log(data);
+    });
   }
 }
