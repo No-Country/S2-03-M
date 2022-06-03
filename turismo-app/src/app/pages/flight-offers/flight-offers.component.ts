@@ -6,6 +6,7 @@ import * as _moment from 'moment';
 import { FlightQuery } from '../../interfaces/flight-query.interface';
 import { Router } from '@angular/router';
 import { OauthService } from '../../services/oauth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-flight-offers',
@@ -29,7 +30,8 @@ export class FlightOffersComponent implements OnInit {
   constructor(
     private flightSvc: FlightService,
     private router: Router,
-    private oauthSvc: OauthService
+    private oauthSvc: OauthService,
+    private auth: AngularFireAuth
   ) {}
 
   ngOnInit(): void {
@@ -73,8 +75,10 @@ export class FlightOffersComponent implements OnInit {
   onBooking(flight: Flight) {
     console.log(flight);
 
-    this.oauthSvc.signInWithGoogle().then(data => {
-      console.log(data);
-    });
+    if (!this.auth.user) {
+      this.oauthSvc.signInWithGoogle().then(data => {
+        console.log(data);
+      });
+    }
   }
 }
