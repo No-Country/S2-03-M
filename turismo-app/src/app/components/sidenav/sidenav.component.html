@@ -20,7 +20,9 @@
           </ng-template>
         </li>
         <li>
-          <a href="#">Alojamientos<i class="fa fa-bed"></i></a>
+          <a [routerLink]="['/hotels']"
+            >Alojamientos<i class="fa fa-bed"></i
+          ></a>
         </li>
         <li routerLinkActive="active">
           <a [routerLink]="['/vuelos']">Vuelos<i class="fa fa-plane"></i></a>

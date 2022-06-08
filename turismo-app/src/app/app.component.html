@@ -1,4 +1,10 @@
-<section class="banner" id="top">
+<section
+  class="banner"
+  id="top"
+  [ngClass]="{
+    flights: router.url === '/vuelos',
+    hotels: router.url === '/hotels'
+  }">
   <div class="container">
     <div class="row">
       <app-sidenav></app-sidenav>
