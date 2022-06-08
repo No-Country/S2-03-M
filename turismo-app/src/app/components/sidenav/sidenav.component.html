@@ -8,8 +8,8 @@
         <li>
           <div *ngIf="auth.user | async as user; else showLogin" class="user">
             <p>
-              <span>{{ user.displayName }}</span>
-              <img [src]="user.photoURL" alt="" />
+              <span>{{ user?.displayName }}</span>
+              <img [src]="user?.photoURL" alt="" />
             </p>
             <button (click)="logout()" class="btn">Cerrar sesión</button>
           </div>
