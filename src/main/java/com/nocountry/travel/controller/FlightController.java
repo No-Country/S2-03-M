@@ -35,22 +35,13 @@ public class FlightController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateFlight(@PathVariable String id, @RequestBody FlightDTO flightDTO){
-        try{
-            return ResponseEntity.status(HttpStatus.CREATED).body(flightService.update(flightDTO, id));
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(flightService.update(flightDTO, id));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteFlight(@PathVariable String id){
-        try{
-            flightService.deleteFlight(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Vuelo eliminado con exito");
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
-        }
+        flightService.deleteFlight(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Vuelo eliminado con exito");
     }
 
     @GetMapping("/all")
@@ -60,12 +51,7 @@ public class FlightController {
 
     @GetMapping("/getForId/{id}")
     public ResponseEntity<?> getById(@PathVariable String id){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(flightService.getById(id));
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(flightService.getById(id));
     }
 
     @GetMapping("paged")

@@ -66,7 +66,7 @@ public class FlightMapper {
         return flightDTOS;
     }
 
-    public FlightDTO flightUpdate2DTO(String id, FlightDTO flightDTO)throws Exception{
+    public FlightDTO flightUpdate2DTO(String id, FlightDTO flightDTO){
         Flight flight= flightService.getById(id);
         flight.setPrice(flightDTO.getPrice());
         flight.setDuration(flightDTO.getDuration());

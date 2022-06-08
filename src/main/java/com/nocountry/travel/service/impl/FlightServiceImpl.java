@@ -2,6 +2,7 @@ package com.nocountry.travel.service.impl;
 
 import com.nocountry.travel.dto.FlightDTO;
 import com.nocountry.travel.entities.Flight;
+import com.nocountry.travel.exception.ParamNotFound;
 import com.nocountry.travel.mapper.FlightMapper;
 import com.nocountry.travel.repositories.FlightRepository;
 import com.nocountry.travel.service.FlightService;
@@ -45,22 +46,22 @@ public class FlightServiceImpl implements FlightService{
     }
 
     @Override
-    public FlightDTO update(FlightDTO flightDTO, String id) throws Exception{
+    public FlightDTO update(FlightDTO flightDTO, String id){
 
         return flightMapper.flightUpdate2DTO(id, flightDTO);
     }
 
     @Override
-    public void deleteFlight(String id) throws Exception{
+    public void deleteFlight(String id) {
         if (id!=null){
             Optional<Flight> flight= flightRepository.findById(id);
             if (!(flight.isPresent())){
-                throw new Exception("No existe el vuelo con el id solicitado: "+id);
+                throw new ParamNotFound("No existe el vuelo con el id solicitado: "+id);
             }else{
                 flightRepository.deleteById(id);
             }
         }else{
-            throw new Exception("El id es nulo o vacio");
+            throw new ParamNotFound("El id es nulo o vacio");
         }
     }
 
@@ -70,16 +71,16 @@ public class FlightServiceImpl implements FlightService{
     }
 
     @Override
-    public Flight getById(String id) throws Exception {
+    public Flight getById(String id){
         if (!(id ==null)){
             Optional<Flight> optionalFlight= flightRepository.findById(id);
             if (!optionalFlight.isPresent()){
-                throw new Exception("No existe un vuelo con el id solicitado: "+id);
+                throw new ParamNotFound("No existe un vuelo con el id solicitado: "+id);
             }else{
                 return optionalFlight.get();
             }
         }else{
-            throw new Exception("El id es nulo o vacio");
+            throw new ParamNotFound("El id es nulo o vacio");
         }
     }
 

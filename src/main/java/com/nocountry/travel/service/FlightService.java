@@ -16,13 +16,13 @@ public interface FlightService {
 
     FlightDTO save(FlightDTO flightDTO);
 
-   FlightDTO update(FlightDTO flightDTO, String id) throws Exception;
+   FlightDTO update(FlightDTO flightDTO, String id) ;
 
-   void deleteFlight(String id)throws Exception;
+   void deleteFlight(String id);
 
    List<FlightDTO> listAll();
 
-   Flight getById(String id) throws Exception;
+   Flight getById(String id);
 
    Page<Flight> getAllPage(Pageable pageable);
 
