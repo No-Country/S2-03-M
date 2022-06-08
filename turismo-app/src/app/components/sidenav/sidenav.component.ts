@@ -23,7 +23,7 @@ export class SidenavComponent {
     this.oauthSvc.signInWithGoogle().then(data => {
       console.log(data);
       this.socialUser = data;
-      const tokenGoogle = new TokenDto(this.socialUser.idToken);
+      const tokenGoogle = new TokenDto(this.socialUser.credential.idToken);
       this.oauthSvc.google(tokenGoogle).subscribe({
         next: (res: any) => {
           console.log(res);
