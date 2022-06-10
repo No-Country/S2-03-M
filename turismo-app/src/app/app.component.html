@@ -2,8 +2,8 @@
   class="banner"
   id="top"
   [ngClass]="{
-    flights: router.url === '/vuelos',
-    hotels: router.url === '/hoteles'
+    flights: router.url.includes('/vuelos'),
+    hotels: router.url.includes('/hoteles')
   }">
   <div class="container">
     <div class="row">

@@ -5,6 +5,7 @@ import { Dialog1Component } from 'src/app/components/dialog1/dialog1.component';
 import { ILocation } from 'src/app/interfaces/location.interface';
 import { FlightService } from '../../services/flight.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotels',
@@ -18,7 +19,8 @@ export class HotelsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private flightSvc: FlightService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,5 +61,12 @@ export class HotelsComponent implements OnInit {
       this.dialog.open(Dialog1Component, { disableClose: true });
       return;
     }
+
+    let myForm = {
+      destiny: this.myForm.get('destiny')!.value.slice(-3),
+    };
+
+    localStorage.setItem('hotelQuery', JSON.stringify(myForm));
+    this.router.navigate(['/hoteles', myForm.destiny]);
   }
 }
