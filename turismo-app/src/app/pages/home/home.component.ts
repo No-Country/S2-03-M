@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('([A-Z a-z])+'),
+          Validators.pattern('([A-Z a-z-])+'),
           Validators.minLength(3),
           Validators.maxLength(50),
         ],
@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('([A-Z a-z])+'),
+          Validators.pattern('([A-Z a-z-])+'),
           Validators.minLength(3),
           Validators.maxLength(50),
         ],

@@ -31,7 +31,7 @@ export class HotelsComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('([A-Z a-z])+'),
+          Validators.pattern('([A-Z a-z-])+'),
           Validators.minLength(3),
           Validators.maxLength(50),
         ],
