@@ -124,6 +124,10 @@
                     *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['maxlength']"
                     >Máximo <strong>50 caracteres</strong></mat-error
                   >
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['pattern']"
+                    >Sólo caracteres <strong>alfabéticos</strong></mat-error
+                  >
                 </mat-form-field>
               </fieldset>
             </div>
@@ -161,6 +165,10 @@
                   <mat-error
                     *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['maxlength']"
                     >Máximo <strong>50 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['pattern']"
+                    >Sólo caracteres <strong>alfabéticos</strong></mat-error
                   >
                 </mat-form-field>
               </fieldset>
