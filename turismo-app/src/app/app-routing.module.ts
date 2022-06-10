@@ -7,7 +7,7 @@ import { HotelsComponent } from './pages/hotels/hotels.component';
 const routes: Routes = [
   { path: 'vuelos', component: HomeComponent },
   { path: 'vuelos-disponibles', component: FlightOffersComponent },
-  { path: 'hotels', component: HotelsComponent },
+  { path: 'hoteles', component: HotelsComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'vuelos' },
 ];
 

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BehaviorSubject, tap } from 'rxjs';
+import { Dialog1Component } from 'src/app/components/dialog1/dialog1.component';
 import { ILocation } from 'src/app/interfaces/location.interface';
 import { FlightService } from '../../services/flight.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-hotels',
@@ -15,7 +17,8 @@ export class HotelsComponent implements OnInit {
   locationsDestiny$ = this.locationsDestinySource.asObservable();
   constructor(
     private formBuilder: FormBuilder,
-    private flightSvc: FlightService
+    private flightSvc: FlightService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +53,10 @@ export class HotelsComponent implements OnInit {
   }
 
   onSubmit() {
-    // ...TODO...
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+      this.dialog.open(Dialog1Component, { disableClose: true });
+      return;
+    }
   }
 }
