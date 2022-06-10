@@ -75,10 +75,8 @@ export class FlightOffersComponent implements OnInit {
   onBooking(flight: Flight) {
     console.log(flight);
 
-    if (!this.auth.user) {
-      this.oauthSvc.signInWithGoogle().then(data => {
-        console.log(data);
-      });
-    }
+    this.oauthSvc.signInWithGoogle().then(data => {
+      console.log(data);
+    });
   }
 }
