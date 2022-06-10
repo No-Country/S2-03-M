@@ -46,6 +46,10 @@
                     *ngIf="(myForm.get('destiny')?.touched || myForm.get('destiny')?.dirty) && myForm.get('destiny')?.errors?.['maxlength']"
                     >Máximo <strong>50 caracteres</strong></mat-error
                   >
+                  <mat-error
+                    *ngIf="(myForm.get('destiny')?.touched || myForm.get('destiny')?.dirty) && myForm.get('destiny')?.errors?.['pattern']"
+                    >Sólo caracteres <strong>alfabéticos</strong></mat-error
+                  >
                 </mat-form-field>
               </fieldset>
             </div>
