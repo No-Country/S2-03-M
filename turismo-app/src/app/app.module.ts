@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { HotelsComponent } from './pages/hotels/hotels.component';
 import { Hotels1Component } from './pages/hotels1/hotels1.component';
+import { FlightConfirmationComponent } from './pages/flight-confirmation/flight-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { Hotels1Component } from './pages/hotels1/hotels1.component';
     FlightOffersComponent,
     HotelsComponent,
     Hotels1Component,
+    FlightConfirmationComponent,
   ],
   imports: [
     BrowserModule,

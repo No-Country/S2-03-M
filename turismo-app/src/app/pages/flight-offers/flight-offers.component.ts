@@ -77,6 +77,7 @@ export class FlightOffersComponent implements OnInit {
 
     this.oauthSvc.signInWithGoogle().then(data => {
       console.log(data);
+      this.router.navigate(['/confirmacion-vuelo']);
     });
   }
 }
