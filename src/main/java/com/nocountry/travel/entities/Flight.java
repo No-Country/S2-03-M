@@ -11,6 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -32,6 +34,7 @@ public class Flight extends BaseEntity {
     @Column(name = "return_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate returnDate;
+
 
     private String originLocation;
 

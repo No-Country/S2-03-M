@@ -2,6 +2,7 @@ package com.nocountry.travel.mapper;
 
 import com.nocountry.travel.dto.FlightDTO;
 import com.nocountry.travel.entities.Flight;
+import com.nocountry.travel.exception.ParamNotFound;
 import com.nocountry.travel.repositories.FlightRepository;
 import com.nocountry.travel.service.FlightService;
 import org.modelmapper.ModelMapper;
@@ -44,9 +45,14 @@ public class FlightMapper {
     }
 
     private static LocalDate string2Date(String s){
-        DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate localDate= LocalDate.parse(s, formatter);
-        return localDate;
+        if (s==null){
+            throw  new ParamNotFound("La fecha es nula o no corresponde a un formato date: "+s);
+
+        }else{
+            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate localDate= LocalDate.parse(s, formatter);
+            return localDate;
+        }
     }
 
     public FlightDTO flight2FlightDTO(Flight flight){

@@ -47,7 +47,6 @@ public class FlightServiceImpl implements FlightService{
 
     @Override
     public FlightDTO update(FlightDTO flightDTO, String id){
-
         return flightMapper.flightUpdate2DTO(id, flightDTO);
     }
 

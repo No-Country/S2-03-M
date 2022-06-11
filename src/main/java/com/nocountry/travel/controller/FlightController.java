@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/flight")
@@ -29,12 +31,12 @@ public class FlightController {
     }*/
 
     @PostMapping("/save")
-    public ResponseEntity<FlightDTO> saveFlight(@RequestBody FlightDTO flightDTO){
+    public ResponseEntity<FlightDTO> saveFlight(@Valid @RequestBody FlightDTO flightDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(flightService.save(flightDTO));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateFlight(@PathVariable String id, @RequestBody FlightDTO flightDTO){
+    public ResponseEntity<?> updateFlight(@PathVariable String id, @Valid @RequestBody FlightDTO flightDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(flightService.update(flightDTO, id));
     }
 
