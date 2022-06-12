@@ -1,15 +1,18 @@
 package com.nocountry.travel.entities;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.*;
 
 @Entity
-@Data
-public class Passenger {
+@Table(name = "passenger")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Passenger  {
     @Id
     private String documentNumber;
 
@@ -22,4 +25,8 @@ public class Passenger {
     private String email;
 
     private Long telephoneNumber;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Passenger.class)
+    @JoinTable(name = "passenger_flight",joinColumns = @JoinColumn(name = "document_Number"), inverseJoinColumns = @JoinColumn(name = "id_flight"))
+    private List<Flight> flights= new ArrayList<>();
 }

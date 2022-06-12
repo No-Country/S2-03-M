@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -17,5 +19,6 @@ private String name;
 private String dateOfBirth;
 private String email;
 private Long telephoneNumber;
+private List<FlightDTO> flightDTOS;
 }
 

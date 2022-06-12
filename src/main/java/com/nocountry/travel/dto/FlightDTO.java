@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 
 @Setter
@@ -38,5 +39,7 @@ public class FlightDTO {
     private String arrivalIataCode;
 
     private String arrivalDate;
+
+    private List<PassengerDTO> passengerDTOS;
    // private ArrayList<String> urlImage = new ArrayList();
 }
