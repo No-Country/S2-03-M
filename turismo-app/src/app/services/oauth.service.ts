@@ -22,11 +22,22 @@ export class OauthService {
     private http: HttpClient
   ) {}
 
-  public google(tokenDto: TokenDto): Observable<TokenDto> {
+  public google(tokenDto: TokenDto, email: string): Observable<TokenDto> {
+    const user = [tokenDto, email];
+    const userStr = JSON.stringify(user);
+    console.log(userStr);
+    const tokenDtoStr = JSON.stringify(tokenDto);
+
     return this.http.post<TokenDto>(
       `${this.oauthURL}/oauth/google`,
-      tokenDto,
-      headers
+      {},
+      {
+        headers: new HttpHeaders({
+          Authorization: tokenDtoStr,
+          'Content-Type': 'application/json',
+          email: email,
+        }),
+      }
     );
   }
 
