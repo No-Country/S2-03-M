@@ -1,7 +1,9 @@
 <div class="col-md-5 col-md-offset-1">
   <section id="first-tab-group" class="tabgroup">
     <div id="tab1">
-      <div class="submit-form">
+      <div
+        class="submit-form"
+        *ngFor="let passenger of passengers; let index = index">
         <h4>Datos de contacto:</h4>
         <form
           id="form-submit"
@@ -10,13 +12,69 @@
           [formGroup]="myForm"
           (ngSubmit)="onSubmit()">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Nombre</mat-label>
+                  <input
+                    formControlName="name"
+                    minlength="3"
+                    maxlength="50"
+                    type="text"
+                    matInput
+                    placeholder="Ingrese nombre..."
+                    autocomplete="off"
+                    required />
+                  <mat-error
+                    *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['minlength']"
+                    >Mínimo <strong>3 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['maxlength']"
+                    >Máximo <strong>50 caracteres</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Apellido</mat-label>
+                  <input
+                    formControlName="lastname"
+                    matInput
+                    placeholder="Ingrese apellido..."
+                    autocomplete="off"
+                    required />
+                  <mat-error
+                    *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['minlength']"
+                    >Mínimo <strong>3 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['maxlength']"
+                    >Máximo <strong>50 caracteres</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
               <!-- Número de documento -->
               <fieldset>
                 <mat-form-field appearance="fill" class="w-100">
                   <mat-label>Número de documento:</mat-label>
                   <input
-                    tabindex="1"
                     formControlName="docnumber"
                     required
                     name="docnumber"
@@ -38,16 +96,13 @@
                 </mat-form-field>
               </fieldset>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <!-- Número de teléfono -->
               <fieldset>
                 <mat-form-field appearance="fill" class="w-100">
                   <mat-label>Número de teléfono:</mat-label>
                   <input
-                    tabindex="2"
                     formControlName="telnumber"
                     required
                     name="telnumber"
@@ -75,14 +130,35 @@
           </div>
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Email</mat-label>
+                  <input
+                    formControlName="email"
+                    matInput
+                    placeholder="Ingrese email..."
+                    autocomplete="off"
+                    required />
+                  <mat-error
+                    *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.errors?.['email']"
+                    >Ingrese un email válido</mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+
+            <div class="col-md-6">
               <!-- Fecha de nacimiento -->
               <fieldset>
                 <mat-form-field appearance="fill" class="w-100">
                   <mat-label for="birthday">Fecha de nacimiento:</mat-label>
                   <input
                     matInput
-                    tabindex="3"
                     [matDatepicker]="pickerBirthday"
                     formControlName="birthday"
                     name="birthday"
@@ -104,10 +180,23 @@
           </div>
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Nacionalidad</mat-label>
+                  <input
+                    formControlName="nationality"
+                    matInput
+                    placeholder="Ingrese nacionalidad..."
+                    autocomplete="off"
+                    required />
+                </mat-form-field>
+              </fieldset>
+            </div>
+
+            <div class="col-md-6" *ngIf="index + 1 === passengers.length">
               <fieldset>
                 <button
-                  tabindex="8"
                   type="submit"
                   id="form-submit"
                   class="btn"

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as _moment from 'moment';
 import { Dialog1Component } from 'src/app/components/dialog1/dialog1.component';
+import { FlightQuery } from '../../interfaces/flight-query.interface';
 
 const moment = _moment;
 
@@ -13,6 +14,8 @@ const moment = _moment;
 })
 export class FlightConfirmationComponent implements OnInit {
   myForm!: FormGroup;
+  flightQuery!: FlightQuery;
+  passengers!: any[];
 
   constructor(private formBuilder: FormBuilder, private dialog: MatDialog) {
     moment.locale('es');
@@ -20,10 +23,28 @@ export class FlightConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.initForm();
+    const flightQuery = localStorage.getItem('flightQuery');
+    if (flightQuery !== null) {
+      this.flightQuery = JSON.parse(flightQuery);
+      console.log(this.flightQuery.passengers);
+      this.passengers = new Array(this.flightQuery.passengers);
+    }
   }
 
   initForm(): FormGroup {
     return this.formBuilder.group({
+      name: [
+        '',
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ],
+      lastname: [
+        '',
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ],
       docnumber: [
         '',
         [
