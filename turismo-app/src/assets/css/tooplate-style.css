@@ -188,14 +188,15 @@ p {
 }
 
 .banner {
-  background-image: url(../img/banner-bg.jpg);
+  /* background-image: url(../img/banner-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: center center; */
   text-align: center;
 }
 
 .banner .left-side {
+  position: fixed;
   text-align: left;
   background-color: rgba(0, 0, 0, 0.5);
   height: 100vh;
@@ -230,7 +231,7 @@ p {
   background-color: rgba(250, 250, 250, 0.95);
   padding: 30px;
   width: 600px;
-  max-height: calc(100vh - 150px);
+  height: calc(100vh - 150px);
 }
 
 .submit-form h4 {

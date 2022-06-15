@@ -14,6 +14,9 @@ import { FlightOffersComponent } from './pages/flight-offers/flight-offers.compo
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { HotelsComponent } from './pages/hotels/hotels.component';
+import { Hotels1Component } from './pages/hotels1/hotels1.component';
+import { FlightConfirmationComponent } from './pages/flight-confirmation/flight-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { AngularFireModule } from '@angular/fire/compat';
     SidenavComponent,
     Dialog1Component,
     FlightOffersComponent,
+    HotelsComponent,
+    Hotels1Component,
+    FlightConfirmationComponent,
   ],
   imports: [
     BrowserModule,
