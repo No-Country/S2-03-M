@@ -63,11 +63,20 @@ export class FlightConfirmationComponent implements OnInit {
           Validators.maxLength(14),
         ],
       ],
+      email: ['', [Validators.required, Validators.email]],
       birthday: [
         this.myForm
           ? moment(this.myForm.get('birthday')!.value).format('YYYY-MM-DD')
           : '',
         [Validators.required],
+      ],
+      nationality: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('[a-z A-Z]+'),
+        ],
       ],
     });
   }
