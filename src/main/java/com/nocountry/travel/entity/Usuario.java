@@ -24,6 +24,9 @@ public class Usuario {
     @Column(unique = true)
     private String email;
     @NotNull
+    @Column(columnDefinition = "TEXT")
+    private String token;
+    @NotNull
     private String password;
     @ManyToMany(fetch = FetchType.EAGER) //indexa todo
     @JoinTable(joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
@@ -31,10 +34,13 @@ public class Usuario {
     private Set<Rol> roles = new HashSet<>();
     public Usuario() {
     }
-    public Usuario(@NotNull String email, @NotNull String password) {
+    
+    public Usuario(@NotNull String email, @NotNull String token, @NotNull String password) {
         this.email = email;
+        this.token = token;
         this.password = password;
     }
+
     public int getId() {
         return id;
     }
@@ -47,17 +53,26 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getPassword() {
-        return password;
+    
+    public String getToken() {
+        return token;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setToken(String token) {
+        this.token = token;
     }
     public Set<Rol> getRoles() {
         return roles;
     }
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     

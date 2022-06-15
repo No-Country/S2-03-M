@@ -1,9 +1,12 @@
 package com.nocountry.travel.service;
 
-import com.google.common.base.Optional;
 import com.nocountry.travel.entity.Rol;
 import com.nocountry.travel.enums.RolNombre;
 import com.nocountry.travel.repository.RolRepository;
+
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +18,14 @@ public class RolService {
     @Autowired
     RolRepository rolRepository;
 
-    public Optional<Rol> getByRolNombre(RolNombre rolNombre){
-        return rolRepository.getByRolNombre(rolNombre);
+    public Optional<Rol> getByRolNombre(RolNombre rolNombre) throws Exception{
+        if (rolRepository.findByRolNombre(rolNombre).isPresent()) {
+            return rolRepository.findByRolNombre(rolNombre);
+        }else{
+            Rol rol = new Rol(RolNombre.ROLE_USER);
+            save(rol);
+            return rolRepository.findByRolNombre(rolNombre);
+        }
     }
 
     public boolean existsByRolNombre(RolNombre  rolNombre){

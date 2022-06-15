@@ -45,6 +45,11 @@ public class MyWebSecurity {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
+    @Bean
+    RSA rsa(){
+        return new RSA();
+    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)

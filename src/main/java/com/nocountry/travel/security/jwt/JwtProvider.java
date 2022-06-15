@@ -2,15 +2,20 @@ package com.nocountry.travel.security.jwt;
 
 import java.util.Date;
 
-import com.google.api.client.util.Value;
+import com.nocountry.travel.security.RSA;
 import com.nocountry.travel.security.UsuarioPrincipal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -29,6 +34,9 @@ public class JwtProvider {//Crea los tokens y verifica que sean correctos
     @Value("${jwt.expiration}")
     int expiration;
 
+    @Autowired
+    private RSA rsa;
+
     public String generateToken(Authentication authentication){
         UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
         return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
@@ -39,8 +47,27 @@ public class JwtProvider {//Crea los tokens y verifica que sean correctos
     }
 
     public String getEmailFromToken(String token){
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+        rsa.initFromStrings();
+        String aux3 = null;
+
+        try {
+            JwtParser jwtParser = Jwts.parser().setSigningKey(secret);// No esta funcionando el signing key
+        
+            Jws<Claims> aux = jwtParser.parseClaimsJws(token);
+            Claims aux2 = aux.getBody();
+            aux3 = aux2.getSubject();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+
+        System.out.println(aux3);
+        return aux3;
+
+
     }
+
+    
 
     public boolean validateToken(String token){
         try {

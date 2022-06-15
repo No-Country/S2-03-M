@@ -1,8 +1,9 @@
 package com.nocountry.travel.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
-import com.google.common.base.Optional;
 import com.nocountry.travel.entity.Usuario;
 import com.nocountry.travel.repository.UsuarioRepository;
 
@@ -26,6 +27,10 @@ public class UsuarioService {
 
     public Usuario save (Usuario usuario){
         return usuarioRepository.save(usuario);
+    }
+
+    public String getEmailByToken(String token){
+        return usuarioRepository.getEmailByToken(token);
     }
 
 }

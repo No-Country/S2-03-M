@@ -27,7 +27,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -61,7 +61,18 @@ public class oauthController {
     RolService rolService;
 
     @PostMapping("/google")
-    public ResponseEntity<?> google(@RequestBody TokenDto tokenDto) throws IOException{ //envia token del front para que google lo valide
+    public ResponseEntity<?> google(@RequestHeader String Authorization) throws Exception{ //envia token del front para que google lo valide
+        
+        String tokenDto=null;
+        System.out.println(tokenDto+"\n");
+        System.out.println(Authorization);
+        
+        if (Authorization != null && Authorization.startsWith("{\"value\":\""+"Bearer ") ) {
+            Authorization = Authorization.replace("{\"value\":\"", "");
+            Authorization = Authorization.replace("\"}", "");
+            tokenDto = Authorization.replace("Bearer ", "");
+        }
+        System.out.println(tokenDto+"\n");
 
         final NetHttpTransport transport = new NetHttpTransport();
         final GsonFactory gsonFactory = GsonFactory.getDefaultInstance();
@@ -69,14 +80,14 @@ public class oauthController {
         new GoogleIdTokenVerifier.Builder(transport, gsonFactory)
         .setAudience(Collections.singletonList(googleClientId));
 
-        final GoogleIdToken  googleIdToken= GoogleIdToken.parse(verifier.getJsonFactory(), tokenDto.getValue());
+        final GoogleIdToken  googleIdToken= GoogleIdToken.parse(verifier.getJsonFactory(), tokenDto);
         final GoogleIdToken.Payload payload = googleIdToken.getPayload();
 
         Usuario usuario = new Usuario();
         if (usuarioService.existsEmail(payload.getEmail())) {
             usuario = usuarioService.getByEmail(payload.getEmail()).get();
         }else{
-            usuario = saveUsuario(payload.getEmail());
+            usuario = saveUsuario(payload.getEmail(), tokenDto);
         }
         
         TokenDto tokenRes = login(usuario);
@@ -97,8 +108,8 @@ public class oauthController {
 
     }
 
-    private Usuario saveUsuario(String email){
-        Usuario usuario = new Usuario(email, passwordEncoder.encode(secretPsw));
+    private Usuario saveUsuario(String email, String tokenDto) throws Exception{
+        Usuario usuario = new Usuario(email, tokenDto, passwordEncoder.encode(secretPsw));
         Rol rolUser = rolService.getByRolNombre(RolNombre.ROLE_USER).get();
         Set<Rol> roles = new HashSet<>();
         roles.add(rolUser);
