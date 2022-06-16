@@ -3,198 +3,202 @@
     <div id="tab1">
       <div
         class="submit-form"
-        *ngFor="let passenger of passengers; let index = index">
-        <h4>Datos de contacto:</h4>
+        *ngFor="let contactForm of contactForms.controls; index as index">
+        <h4>Datos de contacto (pasajero {{ index + 1 }}):</h4>
         <form
           id="form-submit"
           action=""
-          method="get"
           [formGroup]="myForm"
+          method="get"
           (ngSubmit)="onSubmit()">
-          <div class="row">
-            <div class="col-md-6">
-              <fieldset>
-                <mat-form-field class="w-100" appearance="fill">
-                  <mat-label>Nombre</mat-label>
-                  <input
-                    formControlName="name"
-                    minlength="3"
-                    maxlength="50"
-                    type="text"
-                    matInput
-                    placeholder="Ingrese nombre..."
-                    autocomplete="off"
-                    required />
-                  <mat-error
-                    *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['minlength']"
-                    >Mínimo <strong>3 caracteres</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['maxlength']"
-                    >Máximo <strong>50 caracteres</strong></mat-error
-                  >
-                </mat-form-field>
-              </fieldset>
+          <ng-container formArrayName="contactForms">
+            <div>
+              <ng-container [formGroupName]="index">
+                <div class="row">
+                  <div class="col-md-6">
+                    <fieldset>
+                      <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Nombre</mat-label>
+                        <input
+                          formControlName="name"
+                          minlength="3"
+                          maxlength="50"
+                          type="text"
+                          matInput
+                          placeholder="Ingrese nombre..."
+                          autocomplete="off"
+                          required />
+                        <!-- <mat-error
+                          *ngIf="(myForm.get('contactForms)?[index]?.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['required']"
+                          >Este campo es <strong>requerido</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['minlength']"
+                          >Mínimo <strong>3 caracteres</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.errors?.['maxlength']"
+                          >Máximo <strong>50 caracteres</strong></mat-error
+                        > -->
+                      </mat-form-field>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6">
+                    <fieldset>
+                      <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Apellido</mat-label>
+                        <input
+                          formControlName="lastname"
+                          matInput
+                          placeholder="Ingrese apellido..."
+                          autocomplete="off"
+                          required />
+                        <!-- <mat-error
+                          *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['required']"
+                          >Este campo es <strong>requerido</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['minlength']"
+                          >Mínimo <strong>3 caracteres</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['maxlength']"
+                          >Máximo <strong>50 caracteres</strong></mat-error
+                        > -->
+                      </mat-form-field>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <!-- Número de documento -->
+                    <fieldset>
+                      <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Número de documento:</mat-label>
+                        <input
+                          formControlName="docnumber"
+                          required
+                          name="docnumber"
+                          matInput
+                          placeholder="Ingrese número de documento..."
+                          autocomplete="off" />
+                        <!-- <mat-error
+                          *ngIf="(myForm.get('docnumber')?.touched || myForm.get('docnumber')?.dirty) && myForm.get('docnumber')?.errors?.['required']"
+                          >Este campo es <strong>requerido</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('docnumber')?.touched || myForm.get('docnumber')?.dirty) && (myForm.get('docnumber')?.errors?.['minlength'] || myForm.get('docnumber')?.errors?.['maxlength'])"
+                          >Debe tener
+                          <strong>8 (ocho) dígitos</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('docnumber')?.touched || myForm.get('docnumber')?.dirty) && myForm.get('docnumber')?.errors?.['pattern']"
+                          >Sólo caracteres <strong>numéricos</strong></mat-error
+                        > -->
+                      </mat-form-field>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- Número de teléfono -->
+                    <fieldset>
+                      <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Número de teléfono:</mat-label>
+                        <input
+                          formControlName="telnumber"
+                          required
+                          name="telnumber"
+                          matInput
+                          placeholder="Ingrese número de teléfono..."
+                          autocomplete="off" />
+                        <mat-hint>Ejemplo: +1291234567890</mat-hint>
+                        <!-- <mat-error
+                          *ngIf="(myForm.get('telnumber')?.touched || myForm.get('telnumber')?.dirty) && myForm.get('telnumber')?.errors?.['required']"
+                          >Este campo es <strong>requerido</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('telnumber')?.touched || myForm.get('telnumber')?.dirty) && myForm.get('telnumber')?.errors?.['maxlength']"
+                          >Debe tener<strong
+                            >14 (catorce) caracteres</strong
+                          ></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('telnumber')?.touched || myForm.get('telnumber')?.dirty) && myForm.get('telnumber')?.errors?.['pattern']"
+                          >Ingrese un número de teléfono válido</mat-error
+                        > -->
+                      </mat-form-field>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <fieldset>
+                      <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input
+                          formControlName="email"
+                          matInput
+                          placeholder="Ingrese email..."
+                          autocomplete="off"
+                          required />
+                        <!-- <mat-error
+                          *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.errors?.['required']"
+                          >Este campo es <strong>requerido</strong></mat-error
+                        >
+                        <mat-error
+                          *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.errors?.['email']"
+                          >Ingrese un email válido</mat-error
+                        > -->
+                      </mat-form-field>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- Fecha de nacimiento -->
+                    <fieldset>
+                      <mat-form-field appearance="fill" class="w-100">
+                        <mat-label for="birthday"
+                          >Fecha de nacimiento:</mat-label
+                        >
+                        <input
+                          matInput
+                          [matDatepicker]="pickerBirthday"
+                          formControlName="birthday"
+                          name="birthday"
+                          placeholder="Seleccione una fecha..."
+                          autocomplete="off"
+                          required />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="pickerBirthday"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerBirthday></mat-datepicker>
+                        <mat-hint>DD/MM/AAAA</mat-hint>
+                        <!-- <mat-error
+                          *ngIf="(myForm.get('birthday')?.touched || myForm.get('birthday')?.dirty) && myForm.get('birthday')?.errors?.['required']"
+                          ><strong>Seleccione</strong> una fecha</mat-error
+                        > -->
+                      </mat-form-field>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <fieldset>
+                      <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Nacionalidad</mat-label>
+                        <input
+                          formControlName="nationality"
+                          matInput
+                          placeholder="Ingrese nacionalidad..."
+                          autocomplete="off"
+                          required />
+                      </mat-form-field>
+                    </fieldset>
+                  </div>
+                </div>
+              </ng-container>
             </div>
-
-            <div class="col-md-6">
-              <fieldset>
-                <mat-form-field class="w-100" appearance="fill">
-                  <mat-label>Apellido</mat-label>
-                  <input
-                    formControlName="lastname"
-                    matInput
-                    placeholder="Ingrese apellido..."
-                    autocomplete="off"
-                    required />
-                  <mat-error
-                    *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['minlength']"
-                    >Mínimo <strong>3 caracteres</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.errors?.['maxlength']"
-                    >Máximo <strong>50 caracteres</strong></mat-error
-                  >
-                </mat-form-field>
-              </fieldset>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <!-- Número de documento -->
-              <fieldset>
-                <mat-form-field appearance="fill" class="w-100">
-                  <mat-label>Número de documento:</mat-label>
-                  <input
-                    formControlName="docnumber"
-                    required
-                    name="docnumber"
-                    matInput
-                    placeholder="Ingrese número de documento..."
-                    autocomplete="off" />
-                  <mat-error
-                    *ngIf="(myForm.get('docnumber')?.touched || myForm.get('docnumber')?.dirty) && myForm.get('docnumber')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('docnumber')?.touched || myForm.get('docnumber')?.dirty) && (myForm.get('docnumber')?.errors?.['minlength'] || myForm.get('docnumber')?.errors?.['maxlength'])"
-                    >Debe tener <strong>8 (ocho) dígitos</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('docnumber')?.touched || myForm.get('docnumber')?.dirty) && myForm.get('docnumber')?.errors?.['pattern']"
-                    >Sólo caracteres <strong>numéricos</strong></mat-error
-                  >
-                </mat-form-field>
-              </fieldset>
-            </div>
-
-            <div class="col-md-6">
-              <!-- Número de teléfono -->
-              <fieldset>
-                <mat-form-field appearance="fill" class="w-100">
-                  <mat-label>Número de teléfono:</mat-label>
-                  <input
-                    formControlName="telnumber"
-                    required
-                    name="telnumber"
-                    matInput
-                    placeholder="Ingrese número de teléfono..."
-                    autocomplete="off" />
-                  <mat-hint>Ejemplo: +1291234567890</mat-hint>
-                  <mat-error
-                    *ngIf="(myForm.get('telnumber')?.touched || myForm.get('telnumber')?.dirty) && myForm.get('telnumber')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('telnumber')?.touched || myForm.get('telnumber')?.dirty) && myForm.get('telnumber')?.errors?.['maxlength']"
-                    >Debe tener<strong
-                      >14 (catorce) caracteres</strong
-                    ></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('telnumber')?.touched || myForm.get('telnumber')?.dirty) && myForm.get('telnumber')?.errors?.['pattern']"
-                    >Ingrese un número de teléfono válido</mat-error
-                  >
-                </mat-form-field>
-              </fieldset>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <fieldset>
-                <mat-form-field class="w-100" appearance="fill">
-                  <mat-label>Email</mat-label>
-                  <input
-                    formControlName="email"
-                    matInput
-                    placeholder="Ingrese email..."
-                    autocomplete="off"
-                    required />
-                  <mat-error
-                    *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.errors?.['required']"
-                    >Este campo es <strong>requerido</strong></mat-error
-                  >
-                  <mat-error
-                    *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.errors?.['email']"
-                    >Ingrese un email válido</mat-error
-                  >
-                </mat-form-field>
-              </fieldset>
-            </div>
-
-            <div class="col-md-6">
-              <!-- Fecha de nacimiento -->
-              <fieldset>
-                <mat-form-field appearance="fill" class="w-100">
-                  <mat-label for="birthday">Fecha de nacimiento:</mat-label>
-                  <input
-                    matInput
-                    [matDatepicker]="pickerBirthday"
-                    formControlName="birthday"
-                    name="birthday"
-                    placeholder="Seleccione una fecha..."
-                    autocomplete="off"
-                    required />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="pickerBirthday"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerBirthday></mat-datepicker>
-                  <mat-hint>DD/MM/AAAA</mat-hint>
-                  <mat-error
-                    *ngIf="(myForm.get('birthday')?.touched || myForm.get('birthday')?.dirty) && myForm.get('birthday')?.errors?.['required']"
-                    ><strong>Seleccione</strong> una fecha</mat-error
-                  >
-                </mat-form-field>
-              </fieldset>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <fieldset>
-                <mat-form-field class="w-100" appearance="fill">
-                  <mat-label>Nacionalidad</mat-label>
-                  <input
-                    formControlName="nationality"
-                    matInput
-                    placeholder="Ingrese nacionalidad..."
-                    autocomplete="off"
-                    required />
-                </mat-form-field>
-              </fieldset>
-            </div>
-
-            <div class="col-md-6" *ngIf="index + 1 === passengers.length">
+          </ng-container>
+          <div class="row" *ngIf="index + 1 === passengers.length">
+            <div class="col-md-12">
               <fieldset>
                 <button
                   type="submit"

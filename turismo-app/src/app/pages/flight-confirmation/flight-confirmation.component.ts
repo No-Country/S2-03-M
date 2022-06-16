@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as _moment from 'moment';
 import { Dialog1Component } from 'src/app/components/dialog1/dialog1.component';
@@ -28,57 +28,80 @@ export class FlightConfirmationComponent implements OnInit {
       this.flightQuery = JSON.parse(flightQuery);
       console.log(this.flightQuery.passengers);
       this.passengers = new Array(this.flightQuery.passengers);
+      for (let passenger of this.passengers) {
+        this.contactForms.push(
+          this.formBuilder.group({
+            name: this.formBuilder.control(
+              // name
+              '',
+              [
+                Validators.required,
+                Validators.minLength(3),
+                Validators.maxLength(50),
+              ]
+            ),
+            lastname: this.formBuilder.control(
+              // lastname
+              '',
+              [
+                Validators.required,
+                Validators.minLength(3),
+                Validators.maxLength(50),
+              ]
+            ),
+            docnumber: this.formBuilder.control(
+              // docnumber
+              '',
+              [
+                Validators.required,
+                Validators.pattern('[0-9]+'),
+                Validators.minLength(8),
+                Validators.maxLength(8),
+              ]
+            ),
+            telnumber: this.formBuilder.control(
+              // telnumber
+              '',
+              [
+                Validators.required,
+                // Pattern para números de teléfono:
+                Validators.pattern(/((\+[0-9]{1,2}))(\d){11,12}/),
+                Validators.maxLength(14),
+              ]
+            ),
+            email: this.formBuilder.control(
+              // email
+              '',
+              [Validators.required, Validators.email]
+            ),
+            birthday: this.formBuilder.control(
+              // birthday
+              '',
+              [Validators.required]
+            ),
+            nationality: this.formBuilder.control(
+              // nationality
+              '',
+              [
+                Validators.required,
+                Validators.minLength(3),
+                Validators.pattern('[a-z A-Z]+'),
+              ]
+            ),
+          })
+        );
+      }
     }
   }
 
   initForm(): FormGroup {
     return this.formBuilder.group({
-      name: [
-        '',
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
-      ],
-      lastname: [
-        '',
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
-      ],
-      docnumber: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[0-9]+'),
-          Validators.minLength(8),
-          Validators.maxLength(8),
-        ],
-      ],
-      telnumber: [
-        '',
-        [
-          Validators.required,
-          // Pattern para números de teléfono:
-          Validators.pattern(/((\+[0-9]{1,2}))(\d){11,12}/),
-          Validators.maxLength(14),
-        ],
-      ],
-      email: ['', [Validators.required, Validators.email]],
-      birthday: [
-        this.myForm
-          ? moment(this.myForm.get('birthday')!.value).format('YYYY-MM-DD')
-          : '',
-        [Validators.required],
-      ],
-      nationality: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.pattern('[a-z A-Z]+'),
-        ],
-      ],
+      contactForms: this.formBuilder.array([]),
     });
+  }
+
+  get contactForms() {
+    return this.myForm.get('contactForms') as FormArray;
   }
 
   onSubmit() {
