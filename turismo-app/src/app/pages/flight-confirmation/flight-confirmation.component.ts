@@ -111,6 +111,23 @@ export class FlightConfirmationComponent implements OnInit {
       return;
     }
 
-    console.log(this.myForm.value);
+    console.log(this.myForm.value.contactForms);
+
+    let myForm = [];
+
+    for (let contactForm of this.myForm.value.contactForms) {
+      const contact = {
+        name: contactForm.name,
+        lastname: contactForm.lastname,
+        docnumber: contactForm.docnumber,
+        telnumber: contactForm.telnumber.slice(1),
+        email: contactForm.email,
+        birthday: moment(contactForm.birthday).format('DD-MM-YYYY'),
+        nationality: contactForm.nationality,
+      };
+      myForm.push(contact);
+    }
+
+    console.log(myForm);
   }
 }
