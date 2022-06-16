@@ -1,17 +1,14 @@
 package com.nocountry.travel.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
 
-@Setter
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FlightDTO {
@@ -40,6 +37,6 @@ public class FlightDTO {
 
     private String arrivalDate;
 
-    private List<PassengerDTO> passengerDTOS;
+    private List<PassengerDTO> passengerDTOS=new ArrayList<>();
    // private ArrayList<String> urlImage = new ArrayList();
 }

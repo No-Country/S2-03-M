@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class BaseEntity implements Serializable {
+public class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")

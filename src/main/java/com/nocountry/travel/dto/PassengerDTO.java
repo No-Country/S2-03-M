@@ -1,14 +1,13 @@
 package com.nocountry.travel.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class PassengerDTO {
@@ -19,6 +18,6 @@ private String name;
 private String dateOfBirth;
 private String email;
 private Long telephoneNumber;
-private List<FlightDTO> flightDTOS;
+//private List<FlightDTO> flightDTOS;
 }
 

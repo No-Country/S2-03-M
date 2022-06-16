@@ -1,9 +1,7 @@
 package com.nocountry.travel.entities;
 
 import com.nocountry.travel.entities.base.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +19,9 @@ import java.util.Set;
 @Table(name = "flight")
 @SQLDelete(sql = "UPDATE flight SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
-@Data
+@Setter
+@Getter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Flight extends BaseEntity {
@@ -69,8 +69,20 @@ public class Flight extends BaseEntity {
     @Column(name = "arrival_date")
     private LocalDate arrivalDate;
 
-    @OneToMany(mappedBy = "flights" ,cascade = CascadeType.ALL )
+    @OneToMany(mappedBy = "flight" ,cascade = CascadeType.ALL )
+    @ToString.Exclude
     private List<Passenger> passengers= new ArrayList<>();
+
+    public void addPassenger(Passenger passenger){
+        passengers.add(passenger);
+    }
+
+    public void removePassenger(Passenger passenger){
+        passengers.remove(passenger);
+    }
+
+
+
 
    // @Column(name = "url_image")
     //private ArrayList<String> urlImage = new ArrayList();

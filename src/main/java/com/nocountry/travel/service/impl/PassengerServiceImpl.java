@@ -5,6 +5,7 @@ import com.nocountry.travel.entities.Passenger;
 import com.nocountry.travel.exception.ParamNotFound;
 import com.nocountry.travel.mapper.PassengerMapper;
 import com.nocountry.travel.repositories.PassengerRepository;
+import com.nocountry.travel.service.FlightService;
 import com.nocountry.travel.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Autowired
     private PassengerMapper passengerMapper;
+
+    @Autowired
+    private FlightService flightService;
 
     @Override
     public PassengerDTO save(PassengerDTO passengerDTO) {
@@ -64,5 +68,14 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public PassengerDTO findById(String id) {
         return passengerMapper.passenger2PassengerDTO(this.getById(id));
+    }
+
+    @Override
+    public void addFlight(String idFlight, String idPassenger) {
+        /*if(idFlight!=null){
+            Passenger passenger= this.getById(idPassenger);
+            passenger.addFlights(flightService.getById(idFlight));
+        }*/
+
     }
 }

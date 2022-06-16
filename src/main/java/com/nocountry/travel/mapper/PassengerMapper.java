@@ -1,6 +1,7 @@
 package com.nocountry.travel.mapper;
 
 
+import com.nocountry.travel.dto.PassengerBasicDTO;
 import com.nocountry.travel.dto.PassengerDTO;
 import com.nocountry.travel.entities.Passenger;
 import com.nocountry.travel.exception.ParamNotFound;
@@ -28,7 +29,12 @@ public class PassengerMapper {
         }
 
     public Passenger passengerDTO2Passenger(PassengerDTO passengerDTO){
-        Passenger passenger= mapper.map(passengerDTO, Passenger.class);
+        //Passenger passenger= mapper.map(passengerDTO, Passenger.class);
+        Passenger passenger= new Passenger();
+        passenger.setDocumentNumber(passengerDTO.getDocumentNumber());
+        passenger.setName(passengerDTO.getName());
+        passenger.setNationality(passengerDTO.getNationality());
+        passenger.setEmail(passengerDTO.getEmail());
         passenger.setDateOfBirth(string2Date(passengerDTO.getDateOfBirth()));
         return passenger;
     }
@@ -45,5 +51,22 @@ public class PassengerMapper {
             passengerDTOS.add(this.passenger2PassengerDTO(passenger));
         }
         return passengerDTOS;
+    }
+
+    public List<Passenger> listPassengerDTO2PassengerList(List<PassengerDTO> passengerDTOS){
+        List<Passenger> passengers= new ArrayList<>();
+        passengerDTOS.stream().forEach(passengerDTO -> passengers.add(this.passengerDTO2Passenger(passengerDTO)));
+        return passengers;
+    }
+
+    public PassengerBasicDTO passenger2BasicDTO(Passenger passenger){
+        PassengerBasicDTO passengerBasicDTO= new PassengerBasicDTO();
+        passengerBasicDTO.setDocumentNumber(passenger.getDocumentNumber());
+        passengerBasicDTO.setName(passenger.getName());
+        passengerBasicDTO.setDateOfBirth(passenger.getDateOfBirth().toString());
+        passengerBasicDTO.setNationality(passenger.getNationality());
+        passengerBasicDTO.setEmail(passenger.getEmail());
+        passengerBasicDTO.setTelephoneNumber(passenger.getTelephoneNumber());
+        return passengerBasicDTO;
     }
 }

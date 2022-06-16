@@ -3,6 +3,7 @@ package com.nocountry.travel.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -12,7 +13,7 @@ import java.util.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Passenger  {
+public class Passenger {
     @Id
     private String documentNumber;
 
@@ -26,7 +27,9 @@ public class Passenger  {
 
     private Long telephoneNumber;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Passenger.class)
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinTable(name = "passenger_flight",joinColumns = @JoinColumn(name = "document_Number"), inverseJoinColumns = @JoinColumn(name = "id_flight"))
-    private List<Flight> flights= new ArrayList<>();
+    private Flight flight;
+
+
 }

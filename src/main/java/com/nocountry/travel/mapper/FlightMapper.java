@@ -1,5 +1,6 @@
 package com.nocountry.travel.mapper;
 
+import com.nocountry.travel.dto.FlightBasicDTO;
 import com.nocountry.travel.dto.FlightDTO;
 import com.nocountry.travel.entities.Flight;
 import com.nocountry.travel.exception.ParamNotFound;
@@ -25,6 +26,9 @@ public class FlightMapper {
 
     @Autowired
     private FlightRepository flightRepository;
+
+    @Autowired
+    private PassengerMapper passengerMapper;
 
     public Flight flightDtoToFlight(FlightDTO flightDTO){
         Flight flight= mapper.map(flightDTO, Flight.class);
@@ -61,6 +65,10 @@ public class FlightMapper {
         flightDTO.setReturnDate(flight.getReturnDate().toString());
         flightDTO.setArrivalDate(flight.getArrivalDate().toString());
         flightDTO.setLastTicketingDate(flight.getLastTicketingDate().toString());
+        //flightDTO.setPassengerDTOS(passengerMapper.listPassenger2DTOList(flight.getPassengers()));
+        /*if(loadPassengers){
+            flightDTO.setPassengerDTOS(passengerMapper.listPassenger2DTOList(flight.getPassengers()));
+        }*/
         return flightDTO;
     }
 
@@ -86,5 +94,16 @@ public class FlightMapper {
         flight.setArrivalDate(string2Date(flightDTO.getArrivalDate()));
         flightRepository.save(flight);
         return flight2FlightDTO(flight);
+    }
+
+    public FlightBasicDTO flight2BasicDTO(Flight flight){
+        FlightBasicDTO flightBasicDTO= new FlightBasicDTO();
+        flightBasicDTO.setId(flight.getId());
+        flightBasicDTO.setDepartDate(flight.getDepartDate().toString());
+        flightBasicDTO.setReturnDate(flight.getReturnDate().toString());
+        flightBasicDTO.setOriginLocation(flight.getOriginLocation());
+        flightBasicDTO.setDestinationLocation(flight.getDestinationLocation());
+        flightBasicDTO.setAmountPassengers(flight.getPassengers().size());
+        return flightBasicDTO;
     }
 }

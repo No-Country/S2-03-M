@@ -21,5 +21,6 @@ public interface PassengerService {
 
     PassengerDTO findById(String id);
 
+    void addFlight (String idFlight, String idPassenger);
 
 }

@@ -7,9 +7,10 @@ import lombok.Setter;
 @Getter
 public class FlightBasicDTO {
 
-    private String  id;
+    private String id;
     private String returnDate;
     private String originLocation;
     private String destinationLocation;
     private String departDate;
+    private Integer amountPassengers;
 }

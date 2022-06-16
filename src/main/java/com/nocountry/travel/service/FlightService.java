@@ -1,6 +1,8 @@
 package com.nocountry.travel.service;
 
 import com.nocountry.travel.dto.FlightDTO;
+import com.nocountry.travel.dto.FlightPassengerDTO;
+import com.nocountry.travel.dto.PassengerDTO;
 import com.nocountry.travel.entities.Flight;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,5 @@ public interface FlightService {
    Flight getById(String id);
 
    Page<Flight> getAllPage(Pageable pageable);
-
 
 }
