@@ -1,10 +1,10 @@
 package com.nocountry.travel.service.impl;
 
 import com.nocountry.travel.dto.PassengerDTO;
-import com.nocountry.travel.entities.Passenger;
+import com.nocountry.travel.entity.Passenger;
 import com.nocountry.travel.exception.ParamNotFound;
 import com.nocountry.travel.mapper.PassengerMapper;
-import com.nocountry.travel.repositories.PassengerRepository;
+import com.nocountry.travel.repository.PassengerRepository;
 import com.nocountry.travel.service.FlightService;
 import com.nocountry.travel.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;

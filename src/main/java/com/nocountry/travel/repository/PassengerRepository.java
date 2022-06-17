@@ -1,6 +1,6 @@
-package com.nocountry.travel.repositories;
+package com.nocountry.travel.repository;
 
-import com.nocountry.travel.entities.Passenger;
+import com.nocountry.travel.entity.Passenger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

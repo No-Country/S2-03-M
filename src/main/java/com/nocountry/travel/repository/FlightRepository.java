@@ -1,6 +1,6 @@
-package com.nocountry.travel.repositories;
+package com.nocountry.travel.repository;
 
-import com.nocountry.travel.entities.Flight;
+import com.nocountry.travel.entity.Flight;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

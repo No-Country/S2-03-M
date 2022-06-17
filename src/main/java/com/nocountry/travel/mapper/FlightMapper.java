@@ -2,9 +2,9 @@ package com.nocountry.travel.mapper;
 
 import com.nocountry.travel.dto.FlightBasicDTO;
 import com.nocountry.travel.dto.FlightDTO;
-import com.nocountry.travel.entities.Flight;
+import com.nocountry.travel.entity.Flight;
 import com.nocountry.travel.exception.ParamNotFound;
-import com.nocountry.travel.repositories.FlightRepository;
+import com.nocountry.travel.repository.FlightRepository;
 import com.nocountry.travel.service.FlightService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

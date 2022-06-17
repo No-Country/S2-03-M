@@ -1,7 +1,7 @@
 package com.nocountry.travel.service;
 
 import com.nocountry.travel.dto.PassengerDTO;
-import com.nocountry.travel.entities.Passenger;
+import com.nocountry.travel.entity.Passenger;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

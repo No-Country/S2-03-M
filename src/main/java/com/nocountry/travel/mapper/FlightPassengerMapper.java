@@ -1,8 +1,8 @@
 package com.nocountry.travel.mapper;
 
 import com.nocountry.travel.dto.FlightPassengerDTO;
-import com.nocountry.travel.entities.Flight;
-import com.nocountry.travel.entities.Passenger;
+import com.nocountry.travel.entity.Flight;
+import com.nocountry.travel.entity.Passenger;
 import org.springframework.stereotype.Component;
 
 @Component

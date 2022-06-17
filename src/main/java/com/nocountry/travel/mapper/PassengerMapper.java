@@ -3,7 +3,7 @@ package com.nocountry.travel.mapper;
 
 import com.nocountry.travel.dto.PassengerBasicDTO;
 import com.nocountry.travel.dto.PassengerDTO;
-import com.nocountry.travel.entities.Passenger;
+import com.nocountry.travel.entity.Passenger;
 import com.nocountry.travel.exception.ParamNotFound;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

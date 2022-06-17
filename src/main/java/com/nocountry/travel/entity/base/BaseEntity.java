@@ -1,4 +1,4 @@
-package com.nocountry.travel.entities.base;
+package com.nocountry.travel.entity.base;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

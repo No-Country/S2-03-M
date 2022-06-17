@@ -3,13 +3,13 @@ package com.nocountry.travel.service.impl;
 import com.nocountry.travel.dto.FlightBasicDTO;
 import com.nocountry.travel.dto.PassengerBasicDTO;
 import com.nocountry.travel.dto.PassengerDTO;
-import com.nocountry.travel.entities.Flight;
-import com.nocountry.travel.entities.Passenger;
+import com.nocountry.travel.entity.Flight;
+import com.nocountry.travel.entity.Passenger;
 import com.nocountry.travel.exception.ParamNotFound;
 import com.nocountry.travel.mapper.FlightMapper;
 import com.nocountry.travel.mapper.PassengerMapper;
-import com.nocountry.travel.repositories.FlightRepository;
-import com.nocountry.travel.repositories.PassengerRepository;
+import com.nocountry.travel.repository.FlightRepository;
+import com.nocountry.travel.repository.PassengerRepository;
 import com.nocountry.travel.service.FlightService;
 import com.nocountry.travel.service.PassengerService;
 import com.nocountry.travel.service.PassengersWithFlight;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PassengersWithFlightImpl implements PassengersWithFlight {

@@ -1,10 +1,7 @@
 package com.nocountry.travel.service;
 
 import com.nocountry.travel.dto.FlightDTO;
-import com.nocountry.travel.dto.FlightPassengerDTO;
-import com.nocountry.travel.dto.PassengerDTO;
-import com.nocountry.travel.entities.Flight;
-import org.springframework.boot.jackson.JsonComponent;
+import com.nocountry.travel.entity.Flight;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;

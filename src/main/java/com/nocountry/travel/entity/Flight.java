@@ -1,19 +1,15 @@
-package com.nocountry.travel.entities;
+package com.nocountry.travel.entity;
 
-import com.nocountry.travel.entities.base.BaseEntity;
+import com.nocountry.travel.entity.base.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "flight")
