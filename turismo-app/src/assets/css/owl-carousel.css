@@ -166,7 +166,7 @@
   cursor: pointer;
   display: inline-block;
   zoom: 1;
-  *display: inline;/*IE7 life-saver */
+  /* *display: inline; *//*IE7 life-saver */
 }
 .owl-theme .owl-controls .owl-page a{
   display: block;
