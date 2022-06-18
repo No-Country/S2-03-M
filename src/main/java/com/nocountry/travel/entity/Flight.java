@@ -69,6 +69,11 @@ public class Flight extends BaseEntity {
     @ToString.Exclude
     private List<Passenger> passengers= new ArrayList<>();
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "flight_user", joinColumns = @JoinColumn(name= "id_Flight"), inverseJoinColumns = @JoinColumn(name = "id_User"))
+    @ToString.Exclude
+    private Usuario user;
+
     public void addPassenger(Passenger passenger){
         passengers.add(passenger);
     }

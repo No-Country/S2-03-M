@@ -1,0 +1,70 @@
+<div class="col-md-5 col-md-offset-1">
+  <section class="submit-form">
+    <h4 *ngIf="flightQuery$ | async as flightQuery">
+      Vuelos disponibles ({{ flightQuery?.from }} - {{ flightQuery?.to }}):
+    </h4>
+
+    <div class="centered" *ngIf="!flightOffers">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <h5 *ngIf="flightOffers?.length === 0">
+      No se encontraron vuelos disponibles que coincidan con la búsqueda.
+    </h5>
+
+    <mat-card class="card mb-5" *ngFor="let flight of flightOffers">
+      <div class="card-header">
+        <b>Precio:</b> {{ flight.price.total }} ({{ flight.price.currency }})
+      </div>
+      <div class="card-body">
+        Número de asientos disponibles: {{ flight.numberOfBookableSeats }}
+        <br />
+        Última fecha de emisión de boletos:
+        {{ moment(flight.lastTicketingDate).format('DD-MM-YYYY') }}
+        <hr />
+        <h5><strong>Ida</strong></h5>
+        Duración: {{ flight.itineraries[0].duration }}
+
+        <p *ngFor="let i of flight.itineraries[0].segments">
+          <strong>Salida:</strong> {{ i.departure.iataCode }}
+          <strong>en</strong>
+          {{ moment(i.departure.at).format('DD-MM-YYYY hh:mm a') }}
+          <em>(Terminal: {{ i.departure.terminal }})</em>
+          &nbsp;
+          <strong>Llegada:</strong> {{ i.arrival.iataCode }}
+          <strong>en</strong>
+          {{ moment(i.arrival.at).format('DD-MM-YYYY hh:mm a') }}
+          <em>(Terminal: {{ i.arrival.terminal }})</em>
+          &nbsp;
+          <strong>Número de paradas:</strong> {{ i.numberOfStops }}
+        </p>
+
+        <div *ngIf="flight.itineraries[1]">
+          <hr />
+
+          <h5><strong>Vuelta</strong></h5>
+          Duración: {{ flight.itineraries[1].duration }}
+
+          <p *ngFor="let i of flight.itineraries[1].segments">
+            <strong>Salida:</strong> {{ i.departure.iataCode }}
+            <strong>en</strong>
+            {{ moment(i.departure.at).format('DD-MM-YYYY hh:mm a') }}
+            <em>(Terminal: {{ i.departure.terminal }})</em>
+            &nbsp;
+            <strong>Llegada:</strong> {{ i.arrival.iataCode }}
+            <strong>en</strong>
+            {{ moment(i.arrival.at).format('DD-MM-YYYY hh:mm a') }}
+            <em>(Terminal: {{ i.arrival.terminal }})</em>
+            &nbsp;
+            <strong>Número de paradas:</strong> {{ i.numberOfStops }}
+          </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-warning" (click)="onBooking(flight)">
+          Reservar vuelo
+        </button>
+      </div>
+    </mat-card>
+  </section>
+</div>

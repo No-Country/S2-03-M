@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+>>>>>>> 0d5689071149d9827fcbd0e5909b95ab1caa469c
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -60,6 +64,10 @@ build/
 /turismo-app/!.vscode/launch.json
 /turismo-app/!.vscode/extensions.json
 /turismo-app/.history/*
+<<<<<<< HEAD
+=======
+.vscode
+>>>>>>> 0d5689071149d9827fcbd0e5909b95ab1caa469c
 /turismo-app/.vscode
 
 # Miscellaneous
@@ -73,4 +81,11 @@ build/
 
 # System files
 /turismo-app/.DS_Store
+<<<<<<< HEAD
 /turismo-app/Thumbs
+=======
+/turismo-app/Thumbs.db
+
+# Others
+*.local.ts
+>>>>>>> 0d5689071149d9827fcbd0e5909b95ab1caa469c

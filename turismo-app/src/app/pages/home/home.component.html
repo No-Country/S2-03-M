@@ -1,0 +1,244 @@
+<div class="col-md-5 col-md-offset-1">
+  <section id="first-tab-group" class="tabgroup">
+    <div id="tab1">
+      <div class="submit-form">
+        <h4>Consultar disponibilidad de vuelos:</h4>
+        <form
+          id="form-submit"
+          action=""
+          method="get"
+          [formGroup]="myForm"
+          (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="radio-select">
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <mat-radio-group
+                      aria-label="Seleccione tipo de viaje"
+                      formControlName="trip">
+                      <mat-radio-button
+                        tabIndex="1"
+                        name="trip"
+                        id="round"
+                        value="round"
+                        (click)="onClickRound()"
+                        >Ida y Vuelta</mat-radio-button
+                      >
+                      <mat-radio-button
+                        name="trip"
+                        id="oneway"
+                        value="one-way"
+                        (click)="onClickOneway()"
+                        >Sólo Ida</mat-radio-button
+                      >
+                    </mat-radio-group>
+                    <mat-error
+                      *ngIf="radioBtnError && myForm.get('trip')?.errors?.['required']"
+                      ><strong>Seleccione</strong> una opción</mat-error
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Clase</mat-label>
+                  <mat-select formControlName="travelClass" tabIndex="2">
+                    <mat-option value="ECONOMY"> Económica </mat-option>
+                    <mat-option value="PREMIUM_ECONOMY">
+                      Económica Premium
+                    </mat-option>
+                    <mat-option value="BUSINESS"> Ejecutiva </mat-option>
+                    <mat-option value="FIRST"> Primera </mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="(myForm.get('travelClass')?.touched || myForm.get('travelClass')?.dirty) && myForm.get('travelClass')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Pasajeros</mat-label>
+                  <input
+                    formControlName="passengers"
+                    tabindex="3"
+                    matInput
+                    type="number"
+                    min="1"
+                    max="9"
+                    value="1"
+                    required />
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['min']"
+                    >El mínimo es de 1 pasajero</mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('passengers')?.touched || myForm.get('passengers')?.dirty) && myForm.get('passengers')?.errors?.['max']"
+                    >El máximo es de 9 pasajeros</mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Desde:</mat-label>
+                  <input
+                    tabindex="4"
+                    formControlName="from"
+                    required
+                    name="from"
+                    matInput
+                    minlength="3"
+                    placeholder="Ingrese una ubicación..."
+                    autocomplete="off"
+                    (keyup)="onTypingFrom()"
+                    [matAutocomplete]="autoFrom" />
+                  <mat-autocomplete #autoFrom="matAutocomplete">
+                    <mat-option
+                      *ngFor="let location of locationsFrom$ | async"
+                      [value]="
+                        location.address.cityName + ' - ' + location.iataCode
+                      ">
+                      {{ location.address.cityName }} - {{ location.iataCode }}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['minlength']"
+                    >Mínimo <strong>3 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['maxlength']"
+                    >Máximo <strong>50 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('from')?.touched || myForm.get('from')?.dirty) && myForm.get('from')?.errors?.['pattern']"
+                    >Sólo caracteres <strong>alfabéticos</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Hasta:</mat-label>
+                  <input
+                    tabindex="5"
+                    formControlName="to"
+                    required
+                    name="to"
+                    matInput
+                    placeholder="Ingrese una ubicación..."
+                    autocomplete="off"
+                    (keyup)="onTypingTo()"
+                    [matAutocomplete]="autoTo" />
+                  <mat-autocomplete #autoTo="matAutocomplete">
+                    <mat-option
+                      *ngFor="let location of locationsTo$ | async"
+                      [value]="
+                        location.address.cityName + ' - ' + location.iataCode
+                      ">
+                      {{ location.address.cityName }} - {{ location.iataCode }}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['minlength']"
+                    >Mínimo <strong>3 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['maxlength']"
+                    >Máximo <strong>50 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('to')?.touched || myForm.get('to')?.dirty) && myForm.get('to')?.errors?.['pattern']"
+                    >Sólo caracteres <strong>alfabéticos</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label for="departure">Fecha de salida:</mat-label>
+                  <input
+                    matInput
+                    tabindex="6"
+                    [matDatepicker]="pickerDeparture"
+                    formControlName="departure"
+                    name="departure"
+                    placeholder="Seleccione una fecha..."
+                    autocomplete="off"
+                    required />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerDeparture"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerDeparture></mat-datepicker>
+                  <mat-hint>DD/MM/AAAA</mat-hint>
+                  <mat-error
+                    *ngIf="(myForm.get('departure')?.touched || myForm.get('departure')?.dirty) && myForm.get('departure')?.errors?.['required']"
+                    ><strong>Seleccione</strong> una fecha de salida</mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label for="return">Fecha de regreso:</mat-label>
+                  <input
+                    matInput
+                    tabindex="7"
+                    [matDatepicker]="pickerReturn"
+                    formControlName="return"
+                    name="return"
+                    placeholder="Seleccione una fecha..."
+                    autocomplete="off" />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerReturn"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerReturn></mat-datepicker>
+                  <mat-hint>DD/MM/AAAA</mat-hint>
+                  <mat-error
+                    *ngIf="(myForm.get('return')?.touched || myForm.get('return')?.dirty) && myForm.get('return')?.errors?.['required']"
+                    ><strong>Seleccione</strong> una fecha de regreso</mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+
+            <div class="col-md-12">
+              <fieldset>
+                <button
+                  tabindex="8"
+                  type="submit"
+                  id="form-submit"
+                  class="btn"
+                  mat-raised-button
+                  color="accent">
+                  Consultar
+                </button>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

@@ -17,9 +17,9 @@ public class PassengersWithFlightController {
     @Autowired
     private PassengersWithFlight passengersWithFlight;
 
-    @PutMapping("/confirmedReserve/{id}")
-    public ResponseEntity<?> confirmedReserve(@PathVariable String id, @RequestBody List<PassengerDTO> passengerDTOS){
-        passengersWithFlight.unionPassengersWithFlight(id, passengerDTOS);
+    @PutMapping("/confirmedReserve/{idUser}/{id}")
+    public ResponseEntity<?> confirmedReserve(@PathVariable int idUser,@PathVariable String id, @RequestBody List<PassengerDTO> passengerDTOS){
+        passengersWithFlight.unionPassengersWithFlightAndUser(idUser,id, passengerDTOS);
         return ResponseEntity.status(HttpStatus.OK).body("Reserva creada con exito!");
     }
 
@@ -32,5 +32,10 @@ public class PassengersWithFlightController {
     @GetMapping("/passengersOfTrip/{id}")
     public ResponseEntity<?> getPassengerByIdFlight(@PathVariable String id){
         return ResponseEntity.status(HttpStatus.OK).body(passengersWithFlight.getPassengerByIdFlight(id));
+    }
+
+    @GetMapping("/flightOfUser/{id}")
+    public ResponseEntity<?> flightsByIdUser(@PathVariable int id){
+        return ResponseEntity. status(HttpStatus.OK).body(passengersWithFlight.flightByIdUser(id));
     }
 }
