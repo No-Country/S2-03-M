@@ -18,5 +18,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     @Query("SELECT u FROM Usuario u WHERE u.token = :token")
     public String getEmailByToken(@Param("token") String token);
 
-
+    @Query("select u from Usuario u where u.id = :id")
+    public Optional<Usuario> getById(@Param("id") int id);
 }

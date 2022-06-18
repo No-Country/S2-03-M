@@ -1,17 +1,11 @@
 package com.nocountry.travel.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -32,6 +26,8 @@ public class Usuario {
     @JoinTable(joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id")) //Para tabla intermedia con idUsuario e idRol
     private Set<Rol> roles = new HashSet<>();
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
+    private List<Flight> flights= new ArrayList<>();
     public Usuario() {
     }
     
@@ -75,5 +71,11 @@ public class Usuario {
         this.password = password;
     }
 
+    public void addFlight(Flight flight){
+        flights.add(flight);
+    }
+    public void removeFlight(Flight flight){
+        flights.remove(flight);
+    }
     
 }
