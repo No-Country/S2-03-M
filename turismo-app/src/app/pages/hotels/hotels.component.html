@@ -1,0 +1,77 @@
+<div class="col-md-5 col-md-offset-1">
+  <section id="first-tab-group" class="tabgroup">
+    <div id="tab1">
+      <div class="submit-form">
+        <h4>Consultar disponibilidad de hoteles:</h4>
+        <form
+          id="form-submit"
+          action=""
+          method="get"
+          [formGroup]="myForm"
+          (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-12">
+              <fieldset>
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Destino:</mat-label>
+                  <input
+                    tabindex="1"
+                    formControlName="destiny"
+                    required
+                    name="destiny"
+                    matInput
+                    minlength="3"
+                    placeholder="Ingrese una ubicación..."
+                    autocomplete="off"
+                    (keyup)="onTypingDestiny()"
+                    [matAutocomplete]="autoDestiny" />
+                  <mat-autocomplete #autoDestiny="matAutocomplete">
+                    <mat-option
+                      *ngFor="let location of locationsDestiny$ | async"
+                      [value]="
+                        location.address.cityName + ' - ' + location.iataCode
+                      ">
+                      {{ location.address.cityName }} - {{ location.iataCode }}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error
+                    *ngIf="(myForm.get('destiny')?.touched || myForm.get('destiny')?.dirty) && myForm.get('destiny')?.errors?.['required']"
+                    >Este campo es <strong>requerido</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('destiny')?.touched || myForm.get('destiny')?.dirty) && myForm.get('destiny')?.errors?.['minlength']"
+                    >Mínimo <strong>3 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('destiny')?.touched || myForm.get('destiny')?.dirty) && myForm.get('destiny')?.errors?.['maxlength']"
+                    >Máximo <strong>50 caracteres</strong></mat-error
+                  >
+                  <mat-error
+                    *ngIf="(myForm.get('destiny')?.touched || myForm.get('destiny')?.dirty) && myForm.get('destiny')?.errors?.['pattern']"
+                    >Sólo caracteres <strong>alfabéticos</strong></mat-error
+                  >
+                </mat-form-field>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <fieldset>
+                <button
+                  tabindex="8"
+                  type="submit"
+                  id="form-submit"
+                  class="btn"
+                  mat-raised-button
+                  color="accent">
+                  Consultar
+                </button>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,33 @@
+<div class="col-md-5">
+  <div class="left-side">
+    <div class="logo">
+      <img src="assets/img/logo.png" alt="Flight Template" />
+    </div>
+    <div class="tabs-content">
+      <ul class="social-links">
+        <li>
+          <div *ngIf="auth.user | async as user; else showLogin" class="user">
+            <p>
+              <span>{{ user?.displayName }}</span>
+              <img [src]="user?.photoURL" alt="" />
+            </p>
+            <button (click)="logout()" class="btn">Cerrar sesión</button>
+          </div>
+          <ng-template #showLogin>
+            <div (click)="onGoogleLogin()" class="google-login">
+              Ingresar con Google <i class="fa fa-google"></i>
+            </div>
+          </ng-template>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/hoteles']"
+            >Alojamientos<i class="fa fa-bed"></i
+          ></a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/vuelos']">Vuelos<i class="fa fa-plane"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

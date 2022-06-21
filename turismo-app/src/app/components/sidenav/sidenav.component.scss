@@ -1,0 +1,22 @@
+.logo img {
+  width: 200px;
+}
+.user {
+  padding: 10px;
+  background-color: rgba(255, 225, 101, 0.2);
+}
+.user p {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.user span {
+  font-size: 20px;
+  color: white;
+}
+.user img {
+  border-radius: 50%;
+}
