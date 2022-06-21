@@ -79,7 +79,7 @@ export class FlightOffersComponent implements OnInit {
 
     const flightSend = {
       departDate: flight.itineraries[0].segments[0].departure.at,
-      returnDate: flight.itineraries[0].segments[1].arrival.at,
+      returnDate: flight.itineraries[0].segments[1]?.arrival?.at,
       originLocation: this.flightQuery.from,
       destinationLocation: this.flightQuery.to,
       price: flight.price.total,
