@@ -31,8 +31,8 @@ public class Flight extends BaseEntity {
 
 
     @Column(name = "return_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
-    private LocalDateTime returnDate;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
+    private String returnDate;
 
 
     private String originLocation;
@@ -60,12 +60,12 @@ public class Flight extends BaseEntity {
     private String arrivalIataCode;
 
     @Column(name = "depart_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
-    private LocalDateTime departDate;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
+    private String departDate;
 
     @Column(name = "arrival_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
-    private LocalDateTime arrivalDate;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
+    private String  arrivalDate;
 
     @OneToMany(mappedBy = "flight" ,cascade = CascadeType.ALL )
     @ToString.Exclude
