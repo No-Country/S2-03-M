@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class Flight extends BaseEntity {
 
 
     @Column(name = "return_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate returnDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
+    private LocalDateTime returnDate;
 
 
     private String originLocation;
@@ -49,8 +50,8 @@ public class Flight extends BaseEntity {
     private Integer seat;
 
     @Column(name = "ticketing_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate lastTicketingDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
+    private LocalDateTime lastTicketingDate;
 
     private String duration;
 
@@ -59,11 +60,12 @@ public class Flight extends BaseEntity {
     private String arrivalIataCode;
 
     @Column(name = "depart_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate departDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
+    private LocalDateTime departDate;
 
     @Column(name = "arrival_date")
-    private LocalDate arrivalDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a'")
+    private LocalDateTime arrivalDate;
 
     @OneToMany(mappedBy = "flight" ,cascade = CascadeType.ALL )
     @ToString.Exclude

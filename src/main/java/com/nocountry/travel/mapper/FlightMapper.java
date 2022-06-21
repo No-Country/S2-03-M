@@ -32,7 +32,7 @@ public class FlightMapper {
 
     public Flight flightDtoToFlight(FlightDTO flightDTO){
         Flight flight= mapper.map(flightDTO, Flight.class);
-        LocalDate localDate= LocalDate.from(LocalDateTime.now());
+        LocalDateTime localDate= LocalDateTime.from(LocalDateTime.now());
         flight.setLastTicketingDate(localDate);
         flight.setDepartDate(string2Date(flightDTO.getDepartDate()));
         flight.setArrivalDate(string2Date(flightDTO.getArrivalDate()));
@@ -48,13 +48,13 @@ public class FlightMapper {
         return flight;
     }
 
-    private static LocalDate string2Date(String s){
+    private static LocalDateTime string2Date(String s){
         if (s==null){
             throw  new ParamNotFound("La fecha es nula o no corresponde a un formato date: "+s);
 
         }else{
-            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate localDate= LocalDate.parse(s, formatter);
+            DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm a'");
+            LocalDateTime localDate= LocalDateTime.parse(s, formatter);
             return localDate;
         }
     }
