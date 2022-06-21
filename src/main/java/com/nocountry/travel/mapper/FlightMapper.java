@@ -34,9 +34,9 @@ public class FlightMapper {
         Flight flight= mapper.map(flightDTO, Flight.class);
         LocalDateTime localDate= LocalDateTime.from(LocalDateTime.now());
         flight.setLastTicketingDate(localDate);
-        flight.setDepartDate(string2Date(flightDTO.getDepartDate()));
-        flight.setArrivalDate(string2Date(flightDTO.getArrivalDate()));
-        flight.setReturnDate(string2Date(flightDTO.getReturnDate()));
+        flight.setDepartDate(flightDTO.getDepartDate());
+        flight.setArrivalDate(flightDTO.getArrivalDate());
+        flight.setReturnDate(flightDTO.getReturnDate());
         /*flight.setOriginLocation(flightDTO.getOriginLocation());
         flight.setDestinationLocation(flightDTO.getDestinationLocation());
         flight.setPrice(flightDTO.getPrice());
@@ -61,9 +61,9 @@ public class FlightMapper {
 
     public FlightDTO flight2FlightDTO(Flight flight){
         FlightDTO flightDTO= mapper.map(flight, FlightDTO.class);
-        flightDTO.setDepartDate(flight.getDepartDate().toString());
-        flightDTO.setReturnDate(flight.getReturnDate().toString());
-        flightDTO.setArrivalDate(flight.getArrivalDate().toString());
+        flightDTO.setDepartDate(flight.getDepartDate());
+        flightDTO.setReturnDate(flight.getReturnDate());
+        flightDTO.setArrivalDate(flight.getArrivalDate());
         flightDTO.setLastTicketingDate(flight.getLastTicketingDate().toString());
         //flightDTO.setPassengerDTOS(passengerMapper.listPassenger2DTOList(flight.getPassengers()));
         /*if(loadPassengers){
@@ -87,11 +87,11 @@ public class FlightMapper {
         flight.setCodeFlight(flightDTO.getCodeFlight());
         flight.setSeat(flightDTO.getSeat());
         flight.setCurrency(flightDTO.getCurrency());
-        flight.setDepartDate(string2Date(flightDTO.getDepartDate()));
-        flight.setReturnDate(string2Date(flightDTO.getReturnDate()));
+        flight.setDepartDate(flightDTO.getDepartDate());
+        flight.setReturnDate(flightDTO.getReturnDate());
         flight.setArrivalIataCode(flightDTO.getArrivalIataCode());
         flight.setDepartureIataCode(flightDTO.getDepartureIataCode());
-        flight.setArrivalDate(string2Date(flightDTO.getArrivalDate()));
+        flight.setArrivalDate(flightDTO.getArrivalDate());
         flightRepository.save(flight);
         return flight2FlightDTO(flight);
     }
@@ -99,8 +99,8 @@ public class FlightMapper {
     public FlightBasicDTO flight2BasicDTO(Flight flight){
         FlightBasicDTO flightBasicDTO= new FlightBasicDTO();
         flightBasicDTO.setId(flight.getId());
-        flightBasicDTO.setDepartDate(flight.getDepartDate().toString());
-        flightBasicDTO.setReturnDate(flight.getReturnDate().toString());
+        flightBasicDTO.setDepartDate(flight.getDepartDate());
+        flightBasicDTO.setReturnDate(flight.getReturnDate());
         flightBasicDTO.setOriginLocation(flight.getOriginLocation());
         flightBasicDTO.setDestinationLocation(flight.getDestinationLocation());
         flightBasicDTO.setAmountPassengers(flight.getPassengers().size());
