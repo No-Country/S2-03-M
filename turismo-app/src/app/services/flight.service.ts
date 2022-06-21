@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Flight } from '../interfaces/flight.interface';
+import { TokenDto } from '../models/token-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -64,5 +66,20 @@ export class FlightService {
       data,
       activateHeaders ? { headers: this._headers } : {}
     );
+  }
+
+  saveFlight<T>(flight: any, tokenDto: TokenDto, email: string): Observable<T> {
+    const user = [tokenDto, email];
+    const userStr = JSON.stringify(user);
+    console.log(userStr);
+    const tokenDtoStr = JSON.stringify(tokenDto);
+
+    return this.http.post<T>(`http://localhost:8080/flight/save`, flight, {
+      headers: new HttpHeaders({
+        Authorization: tokenDtoStr,
+        'Content-Type': 'application/json',
+        email: email,
+      }),
+    });
   }
 }

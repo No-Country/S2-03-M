@@ -77,6 +77,21 @@ export class FlightOffersComponent implements OnInit {
   onBooking(flight: Flight) {
     console.log(flight);
 
+    const flightSend = {
+      departDate: flight.itineraries[0].segments[0].departure.at,
+      returnDate: flight.itineraries[0].segments[1].arrival.at,
+      originLocation: this.flightQuery.from,
+      destinationLocation: this.flightQuery.to,
+      price: flight.price.total,
+      currency: flight.price.currency,
+      duration: flight.itineraries[0].duration,
+      departureIataCode: flight.itineraries[0].segments[0].departure.iataCode,
+      arrivalIataCode: flight.itineraries[0].segments[0].arrival.iataCode,
+      arrivalDate: flight.itineraries[0].segments[0].arrival.at,
+    };
+
+    console.log(flightSend);
+
     this.oauthSvc.signInWithGoogle().then(data => {
       console.log(data);
       this.socialUser = data;
@@ -87,6 +102,15 @@ export class FlightOffersComponent implements OnInit {
         next: (res: any) => {
           console.log(res);
           this.tokenSvc.setToken(res.value);
+          this.flightSvc.saveFlight(flightSend, tokenGoogle, email).subscribe({
+            next: (res: any) => {
+              console.log(res);
+            },
+            error: (err: any) => console.log(err),
+            complete: () => {
+              console.log('Vuelo guardado');
+            },
+          });
           this.router.navigate(['/confirmacion-vuelo']);
         },
         error: (err: any) => {

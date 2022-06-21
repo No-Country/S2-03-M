@@ -7,7 +7,7 @@ export interface Flight {
   id: number;
   instantTicketingRequired: boolean;
   itineraries: Itinerary[];
-  lastTicketingDate: Date;
+  lastTicketingDate: string;
   nonHomogeneous: boolean;
   numberOfBookableSeats: number;
   oneWay: boolean;
